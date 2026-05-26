@@ -19,7 +19,6 @@ import org.darkphoenixs.mq.consumer.MQConsumer;
 import org.darkphoenixs.mq.exception.MQException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.Map;
 
 /**
@@ -47,7 +46,7 @@ public abstract class AbstractConsumer<K, V> implements MQConsumer<V> {
 
     @Override
     public String getConsumerKey() throws MQException {
-        return this.consumerKey;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -56,7 +55,7 @@ public abstract class AbstractConsumer<K, V> implements MQConsumer<V> {
      * @param consumerKey the consumerKey to set
      */
     public void setConsumerKey(String consumerKey) {
-        this.consumerKey = consumerKey;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -68,17 +67,7 @@ public abstract class AbstractConsumer<K, V> implements MQConsumer<V> {
      * @throws MQException the mq exception
      */
     public void receive(K key, V Val) throws MQException {
-
-        try {
-            doReceive(key, Val);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Receive Success, ConsumerKey : " + this.getConsumerKey()
-                + " , MessageKey : " + key + " , Message : " + Val);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,31 +79,12 @@ public abstract class AbstractConsumer<K, V> implements MQConsumer<V> {
      * @since 1.4.3
      */
     public void receive(Map<K, V> messages) throws MQException {
-
-        try {
-            doReceive(messages);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Receive Success, Batch size : " + messages.size());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void receive(V message) throws MQException {
-
-        try {
-            doReceive(message);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Receive Success, ConsumerKey : " + this.getConsumerKey()
-                + " , Message : " + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -126,7 +96,7 @@ public abstract class AbstractConsumer<K, V> implements MQConsumer<V> {
      * @since 1.4.0
      */
     protected void doReceive(V message) throws MQException {
-        // For compatible without Key.
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,7 +108,7 @@ public abstract class AbstractConsumer<K, V> implements MQConsumer<V> {
      * @since 1.4.3
      */
     protected void doReceive(Map<K, V> messages) throws MQException {
-        // Batch consumer messages override this.
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

@@ -30,7 +30,6 @@ public class MessageProducer<K, V> extends AbstractProducer<K, V> {
 
     @Override
     protected V doSend(V message) throws MQException {
-
-        return message;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

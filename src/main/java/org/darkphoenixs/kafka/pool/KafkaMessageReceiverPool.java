@@ -32,7 +32,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -53,21 +52,23 @@ public class KafkaMessageReceiverPool<K, V> implements MessageReceiverPool<K, V>
 
     private static final String tagger = "KafkaMessageReceiverPool";
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(KafkaMessageReceiverPool.class);
+    private static final Logger logger = LoggerFactory.getLogger(KafkaMessageReceiverPool.class);
 
     /**
      * consumer
      */
     protected ConsumerConnector consumer;
+
     /**
      * pool
      */
     protected ExecutorService pool;
+
     /**
      * props
      */
     protected Properties props = new Properties();
+
     /**
      * The Running.
      */
@@ -87,22 +88,27 @@ public class KafkaMessageReceiverPool<K, V> implements MessageReceiverPool<K, V>
      * poolSize
      */
     private int poolSize;
+
     /**
      * config
      */
     private Resource config;
+
     /**
      * retryCount
      */
     private int retryCount = 3;
+
     /**
      * receiverRetry
      */
     private KafkaMessageReceiverRetry<MessageAndMetadata<K, V>> receiverRetry;
+
     /**
      * keyDecoder
      */
     private Class<?> keyDecoderClass = DefaultDecoder.class;
+
     /**
      * valDecoder
      */
@@ -117,35 +123,34 @@ public class KafkaMessageReceiverPool<K, V> implements MessageReceiverPool<K, V>
      * Init threadFactory.
      */
     public KafkaMessageReceiverPool() {
-
     }
 
     /**
      * @return the threadFactory
      */
     public ThreadFactory getThreadFactory() {
-        return threadFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param threadFactory the threadFactory to set
      */
     public void setThreadFactory(ThreadFactory threadFactory) {
-        this.threadFactory = threadFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the clientId
      */
     public String getClientId() {
-        return props.getProperty(KafkaConstants.CLIENT_ID);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param clientId the clientId to set
      */
     public void setClientId(String clientId) {
-        props.setProperty(KafkaConstants.CLIENT_ID, clientId);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -154,7 +159,7 @@ public class KafkaMessageReceiverPool<K, V> implements MessageReceiverPool<K, V>
      * @return the destination
      */
     public KafkaDestination getDestination() {
-        return destination;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -163,43 +168,42 @@ public class KafkaMessageReceiverPool<K, V> implements MessageReceiverPool<K, V>
      * @param destination the destination
      */
     public void setDestination(KafkaDestination destination) {
-        this.destination = destination;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the zookeeperStr
      */
     public String getZookeeperStr() {
-        return props.getProperty(KafkaConstants.ZOOKEEPER_LIST);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param zookeeperStr the zookeeperStr to set
      */
     public void setZookeeperStr(String zookeeperStr) {
-        props.setProperty(KafkaConstants.ZOOKEEPER_LIST, zookeeperStr);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the autoCommit
      */
     public Boolean getAutoCommit() {
-        return Boolean.valueOf(props.getProperty(KafkaConstants.AUTO_COMMIT_ENABLE, "true"));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param autoCommit the autoCommit to set
      */
     public void setAutoCommit(boolean autoCommit) {
-        props.setProperty(KafkaConstants.AUTO_COMMIT_ENABLE,
-                String.valueOf(autoCommit));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the retryCount
      */
     public int getRetryCount() {
-        return retryCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -208,98 +212,91 @@ public class KafkaMessageReceiverPool<K, V> implements MessageReceiverPool<K, V>
      * @param retryCount the retryCount to set
      */
     public void setRetryCount(int retryCount) {
-        this.retryCount = retryCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the props
      */
     public Properties getProps() {
-        return props;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param props the props to set
      */
     public void setProps(Properties props) {
-        this.props = props;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the poolSize
      */
     public int getPoolSize() {
-        return poolSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param poolSize the poolSize to set
      */
     public void setPoolSize(int poolSize) {
-        this.poolSize = poolSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the config
      */
     public Resource getConfig() {
-        return config;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param config the config to set
      */
     public void setConfig(Resource config) {
-        this.config = config;
-        try {
-            PropertiesLoaderUtils.fillProperties(props, this.config);
-        } catch (IOException e) {
-            logger.error("Fill properties failed.", e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the keyDecoderClass
      */
     public Class<?> getKeyDecoderClass() {
-        return keyDecoderClass;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param keyDecoderClass the keyDecoderClass to set
      */
     public void setKeyDecoderClass(Class<?> keyDecoderClass) {
-        this.keyDecoderClass = keyDecoderClass;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the valDecoderClass
      */
     public Class<?> getValDecoderClass() {
-        return valDecoderClass;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param valDecoderClass the valDecoder to set
      */
     public void setValDecoderClass(Class<?> valDecoderClass) {
-        this.valDecoderClass = valDecoderClass;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the messageAdapter
      */
     public KafkaMessageAdapter<?, ?> getMessageAdapter() {
-        return messageAdapter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param messageAdapter the messageAdapter to set
      */
     public void setMessageAdapter(KafkaMessageAdapter<?, ?> messageAdapter) {
-        this.messageAdapter = messageAdapter;
-        if (messageAdapter.getDestination() != null)
-            this.setDestination(messageAdapter.getDestination());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -309,11 +306,7 @@ public class KafkaMessageReceiverPool<K, V> implements MessageReceiverPool<K, V>
      */
     @Override
     public KafkaMessageReceiver<K, V> getReceiver() {
-
-        KafkaMessageReceiver<K, V> receiver = new KafkaMessageReceiverImpl<K, V>(
-                props, this);
-
-        return receiver;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -321,99 +314,22 @@ public class KafkaMessageReceiverPool<K, V> implements MessageReceiverPool<K, V>
      */
     @Override
     public void returnReceiver(KafkaMessageReceiver<K, V> receiver) {
-
-        if (receiver != null)
-
-            receiver.shutDown();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void init() {
-
-        String topic = destination.getDestinationName();
-
-        int defaultSize = getReceiver().getPartitionCount(topic);
-
-        if (poolSize == 0 || poolSize > defaultSize)
-
-            setPoolSize(defaultSize);
-
-        if (retryCount > 0)
-
-            receiverRetry = new KafkaMessageReceiverRetry<MessageAndMetadata<K, V>>(topic, retryCount, messageAdapter);
-
-        this.threadFactory = new KafkaPoolThreadFactory(tagger + "-" + topic);
-
-        this.pool = Executors.newFixedThreadPool(poolSize, threadFactory);
-
-        logger.info("Message receiver pool initializing. poolSize : "
-                + poolSize + " config : " + props.toString());
-
-        consumer = kafka.consumer.Consumer
-                .createJavaConsumerConnector(new ConsumerConfig(props));
-
-        Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
-
-        topicCountMap.put(topic, poolSize);
-
-        VerifiableProperties verProps = new VerifiableProperties(props);
-
-        @SuppressWarnings("unchecked")
-        Decoder<K> keyDecoder = (Decoder<K>) RefleTool.newInstance(
-                keyDecoderClass, verProps);
-
-        @SuppressWarnings("unchecked")
-        Decoder<V> valDecoder = (Decoder<V>) RefleTool.newInstance(
-                valDecoderClass, verProps);
-
-        Map<String, List<KafkaStream<K, V>>> consumerMap = consumer
-                .createMessageStreams(topicCountMap, keyDecoder, valDecoder);
-
-        List<KafkaStream<K, V>> streams = consumerMap.get(topic);
-
-        for (final KafkaStream<K, V> stream : streams) {
-
-            pool.submit(new ReceiverThread(stream, messageAdapter));
-        }
-
-        logger.info("Message receiver pool initialized.");
-
-        running.set(true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void destroy() {
-
-        logger.info("Message receiver pool closing.");
-
-        if (consumer != null)
-            consumer.shutdown();
-
-        if (pool != null) {
-            pool.shutdown();
-
-            try {
-                if (!pool.awaitTermination(KafkaConstants.INIT_TIMEOUT_MS,
-                        TimeUnit.MILLISECONDS)) {
-                    logger.warn("Timed out waiting for consumer threads to shut down, exiting uncleanly");
-                }
-            } catch (InterruptedException e) {
-                logger.error("Interrupted during shutdown, exiting uncleanly");
-            }
-        }
-
-        if (receiverRetry != null)
-            receiverRetry.destroy();
-
-        logger.info("Message receiver pool closed.");
-
-        running.set(false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized boolean isRunning() {
-
-        return running.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -425,53 +341,14 @@ public class KafkaMessageReceiverPool<K, V> implements MessageReceiverPool<K, V>
 
         private KafkaMessageAdapter<?, ?> adapter;
 
-        public ReceiverThread(KafkaStream<K, V> stream,
-                              KafkaMessageAdapter<?, ?> adapter) {
-
+        public ReceiverThread(KafkaStream<K, V> stream, KafkaMessageAdapter<?, ?> adapter) {
             this.stream = stream;
             this.adapter = adapter;
         }
 
         @Override
         public void run() {
-
-            logger.info(Thread.currentThread().getName() + " clientId: "
-                    + stream.clientId() + " start.");
-
-            ConsumerIterator<K, V> it = stream.iterator();
-
-            while (it.hasNext()) {
-
-                MessageAndMetadata<K, V> messageAndMetadata = it.next();
-
-                try {
-                    this.adapter.messageAdapter(messageAndMetadata);
-
-                } catch (MQException e) {
-
-                    if (receiverRetry != null)
-
-                        receiverRetry.receiveMessageRetry(messageAndMetadata);
-
-                    logger.error("Receive message failed."
-                            + " topic: " + messageAndMetadata.topic()
-                            + " offset: " + messageAndMetadata.offset()
-                            + " partition: " + messageAndMetadata.partition(), e);
-
-                } finally {
-
-                    /* commitOffsets */
-                    if (!getAutoCommit()) {
-                        consumer.commitOffsets(Collections.singletonMap(
-                                TopicAndPartition.apply(messageAndMetadata.topic(), messageAndMetadata.partition()),
-                                OffsetAndMetadata.apply(messageAndMetadata.offset() + 1)), true);
-                    }
-                }
-            }
-
-            logger.info(Thread.currentThread().getName() + " clientId: " + stream.clientId() + " end.");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
-
 }

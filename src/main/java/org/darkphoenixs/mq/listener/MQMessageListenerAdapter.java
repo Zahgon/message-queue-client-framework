@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.mq.listener;
 
 import org.apache.rocketmq.client.consumer.listener.MessageListener;
@@ -29,7 +28,6 @@ import org.darkphoenixs.mq.util.MQ_TYPE;
 import org.darkphoenixs.rocketmq.listener.RocketmqMessageConsumerListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +70,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @return the message decoder
      */
     public MQMessageDecoder<T> getMessageDecoder() {
-        return messageDecoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -81,7 +79,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @param messageDecoder the message decoder
      */
     public void setMessageDecoder(MQMessageDecoder<T> messageDecoder) {
-        this.messageDecoder = messageDecoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,7 +88,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @return the consumer adapter
      */
     public MQConsumerAdapter<T> getConsumerAdapter() {
-        return consumerAdapter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -99,7 +97,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @param consumerAdapter the consumer adapter
      */
     public void setConsumerAdapter(MQConsumerAdapter<T> consumerAdapter) {
-        this.consumerAdapter = consumerAdapter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -108,9 +106,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @return the type
      */
     public String getType() {
-        if (type != null)
-            return type.name();
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -122,8 +118,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @throws MQException the mq exception
      */
     public void setType(String type) throws MQException {
-        this.type = MQ_TYPE.valueOf(type);
-        this.initListener();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -132,7 +127,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @return the batch
      */
     public String getBatch() {
-        return batch.name();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -141,7 +136,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @param batch the batch
      */
     public void setBatch(String batch) {
-        this.batch = MQ_BATCH.valueOf(batch);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -150,7 +145,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @return the model
      */
     public String getModel() {
-        return model.name();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -159,19 +154,12 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @param model the model
      */
     public void setModel(String model) {
-        this.model = MQ_MODEL.valueOf(model);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(T message) throws MQException {
-
-        if (consumerAdapter != null)
-
-            consumerAdapter.receive(message);
-        else
-            throw new MQException("MQConsumerAdapter is null !");
-
-        logger.debug("Consume Success, Message : " + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -182,14 +170,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @throws MQException the mq exception
      */
     public void onMessageWithKey(String key, T message) throws MQException {
-
-        if (consumerAdapter != null)
-
-            consumerAdapter.receive(key, message);
-        else
-            throw new MQException("MQConsumerAdapter is null !");
-
-        logger.debug("Consume Success, Key : " + key + " Message : " + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -199,14 +180,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @throws MQException the mq exception
      */
     public void onMessageWithBatch(Map<String, T> messages) throws MQException {
-
-        if (consumerAdapter != null)
-
-            consumerAdapter.receive(messages);
-        else
-            throw new MQException("MQConsumerAdapter is null !");
-
-        logger.debug("Consume Success, Message size: " + messages.size());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -215,8 +189,7 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @return the kafka message adapter
      */
     public KafkaMessageAdapter<String, T> getKafkaMessageAdapter() {
-
-        return kafkaMessageAdapter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -225,13 +198,11 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
      * @return the rocket message listener
      */
     public MessageListener getRocketMessageListener() {
-
-        return rocketMessageListener;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void initListener() throws MQException {
-
-        switch (type) {
+        switch(type) {
             case KAFKA:
                 if (messageDecoder == null)
                     throw new MQException("MessageDecoder must not null!");
@@ -242,40 +213,34 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
 
                     @Override
                     public String decodeKey(byte[] bytes) throws MQException {
-                        if (bytes != null)
-                            return new String(bytes);
-                        return null;
+                        throw new UnsupportedOperationException("STUB: not implemented");
                     }
 
                     @Override
                     public T decodeVal(byte[] bytes) throws MQException {
-                        return messageDecoder.decode(bytes);
+                        throw new UnsupportedOperationException("STUB: not implemented");
                     }
 
                     @Override
                     public List<T> batchDecode(List<byte[]> bytes) throws MQException {
-                        return messageDecoder.batchDecode(bytes);
+                        throw new UnsupportedOperationException("STUB: not implemented");
                     }
 
                     @Override
                     public Map<String, T> batchDecode(Map<byte[], byte[]> bytes) throws MQException {
-                        Map<String, T> map = new IdentityHashMap<String, T>();
-                        if (bytes != null)
-                            for (Map.Entry<byte[], byte[]> entry : bytes.entrySet())
-                                map.put(decodeKey(entry.getKey()), decodeVal(entry.getValue()));
-                        return map;
+                        throw new UnsupportedOperationException("STUB: not implemented");
                     }
                 });
                 kafkaMessageAdapter.setMessageListener(new KafkaMessageConsumerListener<String, T>() {
 
                     @Override
                     public void onMessage(String key, T val) throws MQException {
-                        MQMessageListenerAdapter.this.onMessageWithKey(key, val);
+                        throw new UnsupportedOperationException("STUB: not implemented");
                     }
 
                     @Override
                     public void onMessage(Map<String, T> messages) throws MQException {
-                        MQMessageListenerAdapter.this.onMessageWithBatch(messages);
+                        throw new UnsupportedOperationException("STUB: not implemented");
                     }
                 });
                 break;
@@ -286,12 +251,12 @@ public class MQMessageListenerAdapter<T> implements MQMessageListener<T> {
 
                     @Override
                     public void onMessage(String key, T val) throws MQException {
-                        MQMessageListenerAdapter.this.onMessageWithKey(key, val);
+                        throw new UnsupportedOperationException("STUB: not implemented");
                     }
 
                     @Override
                     public void onMessage(Map<String, T> messages) throws MQException {
-                        MQMessageListenerAdapter.this.onMessageWithBatch(messages);
+                        throw new UnsupportedOperationException("STUB: not implemented");
                     }
                 };
                 rocketmqMessageConsumerListener.setBatch(getBatch());

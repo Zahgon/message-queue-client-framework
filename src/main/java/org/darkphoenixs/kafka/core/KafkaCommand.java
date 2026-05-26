@@ -52,11 +52,7 @@ public class KafkaCommand {
      * @param zookeeperStr zookeeper地址
      */
     public static void listTopics(String zookeeperStr) {
-
-        TopicCommand.listTopics(ZkUtils.apply(zookeeperStr,
-                sessionTimeout, connectionTimeout,
-                JaasUtils.isZkSecurityEnabled()), new TopicCommandOptions(
-                new String[]{"--list"}));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -68,15 +64,8 @@ public class KafkaCommand {
      * @param replications 复制个数
      * @param partitions   分区个数
      */
-    public static void createTopic(String zookeeperStr, String topic,
-                                   int replications, int partitions) {
-
-        TopicCommand.createTopic(ZkUtils.apply(zookeeperStr,
-                sessionTimeout, connectionTimeout,
-                JaasUtils.isZkSecurityEnabled()), new TopicCommandOptions(
-                new String[]{"--create", "--topic", topic,
-                        "--replication-factor", String.valueOf(replications),
-                        "--partitions", String.valueOf(partitions)}));
+    public static void createTopic(String zookeeperStr, String topic, int replications, int partitions) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -87,11 +76,7 @@ public class KafkaCommand {
      * @param topic        队列名称
      */
     public static void describeTopic(String zookeeperStr, String topic) {
-
-        TopicCommand.describeTopic(ZkUtils.apply(zookeeperStr,
-                sessionTimeout, connectionTimeout,
-                JaasUtils.isZkSecurityEnabled()), new TopicCommandOptions(
-                new String[]{"--describe", "--topic", topic}));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -102,14 +87,8 @@ public class KafkaCommand {
      * @param topic        队列名称
      * @param partitions   分区个数
      */
-    public static void alterTopic(String zookeeperStr, String topic,
-                                  int partitions) {
-
-        TopicCommand.alterTopic(ZkUtils.apply(zookeeperStr,
-                sessionTimeout, connectionTimeout,
-                JaasUtils.isZkSecurityEnabled()), new TopicCommandOptions(
-                new String[]{"--alter", "--topic", topic,
-                        "--partitions", String.valueOf(partitions)}));
+    public static void alterTopic(String zookeeperStr, String topic, int partitions) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -120,29 +99,8 @@ public class KafkaCommand {
      * @param topic        队列名称
      * @param config       配置参数
      */
-    public static void alterTopic(String zookeeperStr, String topic,
-                                  String... config) {
-
-        StringBuffer updateOptions = new StringBuffer();
-
-        updateOptions.append("--alter").append(space)
-                .append("--topic").append(space).append(topic);
-
-        for (int i = 0; i < config.length; i++) {
-
-            if (config[i].indexOf("=") > 0)
-
-                updateOptions.append(space).append("--config").append(space)
-                        .append(config[i]);
-            else
-                updateOptions.append(space).append("--delete-config")
-                        .append(space).append(config[i]);
-        }
-
-        TopicCommand.alterTopic(ZkUtils.apply(zookeeperStr,
-                sessionTimeout, connectionTimeout,
-                JaasUtils.isZkSecurityEnabled()), new TopicCommandOptions(
-                updateOptions.toString().split(space)));
+    public static void alterTopic(String zookeeperStr, String topic, String... config) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -154,30 +112,8 @@ public class KafkaCommand {
      * @param partitions   分区个数
      * @param config       配置参数
      */
-    public static void alterTopic(String zookeeperStr, String topic,
-                                  int partitions, String... config) {
-
-        StringBuffer updateOptions = new StringBuffer();
-
-        updateOptions.append("--alter").append(space)
-                .append("--topic").append(space).append(topic).append(space)
-                .append("--partitions").append(space).append(partitions);
-
-        for (int i = 0; i < config.length; i++) {
-
-            if (config[i].indexOf("=") > 0)
-
-                updateOptions.append(space).append("--config").append(space)
-                        .append(config[i]);
-            else
-                updateOptions.append(space).append("--delete-config")
-                        .append(space).append(config[i]);
-        }
-
-        TopicCommand.alterTopic(ZkUtils.apply(zookeeperStr,
-                sessionTimeout, connectionTimeout,
-                JaasUtils.isZkSecurityEnabled()), new TopicCommandOptions(
-                updateOptions.toString().split(space)));
+    public static void alterTopic(String zookeeperStr, String topic, int partitions, String... config) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -188,10 +124,6 @@ public class KafkaCommand {
      * @param topic        队列名称
      */
     public static void deleteTopic(String zookeeperStr, String topic) {
-
-        TopicCommand.deleteTopic(ZkUtils.apply(zookeeperStr,
-                sessionTimeout, connectionTimeout,
-                JaasUtils.isZkSecurityEnabled()), new TopicCommandOptions(
-                new String[]{"--delete", "--topic", topic}));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

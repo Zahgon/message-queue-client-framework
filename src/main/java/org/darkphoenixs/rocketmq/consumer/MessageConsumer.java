@@ -13,11 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.rocketmq.consumer;
 
 import org.darkphoenixs.mq.exception.MQException;
-
 import java.util.List;
 import java.util.Map;
 
@@ -34,25 +32,21 @@ public class MessageConsumer<T> extends AbstractConsumer<T> {
 
     @Override
     protected void doReceive(T message) throws MQException {
-
-        System.out.println(message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected void doReceive(List<T> messages) throws MQException {
-
-        System.out.println(messages);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected void doReceive(String key, T message) throws MQException {
-
-        System.out.println(key + ":" + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected void doReceive(Map<String, T> messages) throws MQException {
-
-        System.out.println(messages);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

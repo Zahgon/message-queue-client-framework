@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.kafka.pool;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -51,11 +49,8 @@ public class KafkaMessageReceiverMonitor<T> {
      * @param blockingQueue       the blocking queue
      */
     public KafkaMessageReceiverMonitor(String topic, long monitorIntervalTime, int monitorPercentage, BlockingQueue<T> blockingQueue) {
-
         this.monitorPercentage = monitorPercentage;
-
         this.monitorPool = Executors.newScheduledThreadPool(monitorPoolSize, new KafkaPoolThreadFactory(MonitorThread.tagger + "-" + topic));
-
         this.monitorPool.scheduleAtFixedRate(new MonitorThread(blockingQueue), 0, monitorIntervalTime, TimeUnit.MILLISECONDS);
     }
 
@@ -63,13 +58,7 @@ public class KafkaMessageReceiverMonitor<T> {
      * Destroy.
      */
     public void destroy() {
-
-        if (monitorPool != null) {
-
-            monitorPool.shutdown();
-
-            logger.info("Monitor pool closed.");
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -90,28 +79,12 @@ public class KafkaMessageReceiverMonitor<T> {
          * @param blockingQueue the blocking queue
          */
         public MonitorThread(BlockingQueue<T> blockingQueue) {
-
             this.blockingQueue = blockingQueue;
         }
 
         @Override
         public void run() {
-
-            // queue usage size
-            int usageSize = blockingQueue.size();
-
-            // queue free size
-            int freeSize = blockingQueue.remainingCapacity();
-
-            // queue usage rate (%)
-            double usageRate = (usageSize * 1.0) / ((usageSize + freeSize) * 1.0) * 100;
-
-            // usageRate > monitorPercentage
-            if (usageRate > monitorPercentage)
-
-                logger.warn("BlockingQueue usage rate: {}%. usage size: {}. free size: {}.", usageRate, usageSize, freeSize);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
-
 }

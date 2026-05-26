@@ -20,7 +20,6 @@ import org.darkphoenixs.mq.exception.MQException;
 import org.darkphoenixs.mq.factory.MQConsumerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -39,10 +38,12 @@ public final class MQMessageConsumerFactory implements MQConsumerFactory {
      * instance
      */
     private static final AtomicReference<MQMessageConsumerFactory> instance = new AtomicReference<MQMessageConsumerFactory>();
+
     /**
      * logger
      */
     protected Logger logger = LoggerFactory.getLogger(MQMessageConsumerFactory.class);
+
     /**
      * consumers
      */
@@ -63,70 +64,34 @@ public final class MQMessageConsumerFactory implements MQConsumerFactory {
      * get singleton instance method
      */
     public synchronized static MQConsumerFactory getInstance() {
-
-        if (instance.get() == null)
-            instance.compareAndSet(null, new MQMessageConsumerFactory());
-        return instance.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumers the consumers to set
      */
     public void setConsumers(MQConsumer<?>[] consumers) {
-        this.consumers = consumers;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public <T> void addConsumer(MQConsumer<T> consumer) throws MQException {
-
-        consumerCache.put(consumer.getConsumerKey(), consumer);
-
-        logger.debug("Add MQConsumer : " + consumer.getConsumerKey());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public <T> MQConsumer<T> getConsumer(String consumerKey) throws MQException {
-
-        if (consumerCache.containsKey(consumerKey)) {
-
-            logger.debug("Get MQConsumer : " + consumerKey);
-
-            return (MQConsumer<T>) consumerCache.get(consumerKey);
-
-        } else {
-
-            logger.warn("Unknown ConsumerKey : " + consumerKey);
-
-            return null;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void init() throws MQException {
-
-        if (consumers != null)
-
-            for (int i = 0; i < consumers.length; i++)
-
-                consumerCache.put(consumers[i].getConsumerKey(), consumers[i]);
-
-        logger.debug("Initialized!");
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void destroy() throws MQException {
-
-        if (consumers != null)
-            consumers = null;
-
-        if (instance.get() != null)
-            instance.set(null);
-
-        consumerCache.clear();
-
-        logger.debug("Destroyed!");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

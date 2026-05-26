@@ -20,7 +20,6 @@ import org.darkphoenixs.mq.producer.MQProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
-
 import javax.jms.Destination;
 import javax.jms.Queue;
 import javax.jms.Topic;
@@ -60,77 +59,38 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @return the jmsTemplate
      */
     public JmsTemplate getJmsTemplate() {
-        return jmsTemplate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param jmsTemplate the jmsTemplate to set
      */
     public void setJmsTemplate(JmsTemplate jmsTemplate) {
-        this.jmsTemplate = jmsTemplate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the destination
      */
     public Destination getDestination() {
-        return destination;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param destination the destination to set
      */
     public void setDestination(Destination destination) {
-        this.destination = destination;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void send(T message) throws MQException {
-
-        try {
-            Object obj = doSend(message);
-
-            jmsTemplate.convertAndSend(destination, obj);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Send Success, ProducerKey : " + this.getProducerKey()
-                + " , Message : " + message);
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getProducerKey() throws MQException {
-
-        if (this.producerKey != null)
-
-            return this.producerKey;
-
-        if (destination instanceof Queue)
-
-            try {
-                return ((Queue) destination).getQueueName();
-
-            } catch (Exception e) {
-
-                throw new MQException(e);
-            }
-
-        else if (destination instanceof Topic)
-
-            try {
-                return ((Topic) destination).getTopicName();
-
-            } catch (Exception e) {
-
-                throw new MQException(e);
-            }
-
-        else
-            return destination.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,7 +98,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @since 1.2.3
      */
     public void setProducerKey(String producerKey) {
-        this.producerKey = producerKey;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

@@ -13,11 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.rocketmq.producer;
 
 import org.darkphoenixs.mq.exception.MQException;
-
 import java.util.List;
 
 /**
@@ -33,13 +31,11 @@ public class MessageProducer<T> extends AbstractProducer<T> {
 
     @Override
     protected T doSend(T message) throws MQException {
-
-        return message;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     protected List<T> doSend(List<T> messages) throws MQException {
-
-        return messages;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

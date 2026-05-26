@@ -39,24 +39,18 @@ public class MessageConsumerListener<K, V> extends KafkaMessageListener<K, V> {
      * @return the consumer
      */
     public MQConsumer<V> getConsumer() {
-        return consumer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumer the consumer to set
      */
     public void setConsumer(MQConsumer<V> consumer) {
-        this.consumer = consumer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(V message) throws MQException {
-
-        if (consumer != null)
-
-            consumer.receive(message);
-        else
-            throw new MQException("MQConsumer is null !");
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

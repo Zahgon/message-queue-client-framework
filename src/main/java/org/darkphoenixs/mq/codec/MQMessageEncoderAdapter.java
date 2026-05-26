@@ -13,11 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.mq.codec;
 
 import org.darkphoenixs.mq.exception.MQException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +30,6 @@ public abstract class MQMessageEncoderAdapter<T> implements MQMessageEncoder<T> 
 
     @Override
     public List<byte[]> batchEncode(List<T> message) throws MQException {
-
-        List<byte[]> list = new ArrayList<byte[]>();
-
-        for (T t : message)
-
-            list.add(encode(t));
-
-        return list;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

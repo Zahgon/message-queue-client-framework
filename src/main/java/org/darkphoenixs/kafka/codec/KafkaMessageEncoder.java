@@ -17,7 +17,6 @@ package org.darkphoenixs.kafka.codec;
 
 import org.darkphoenixs.mq.codec.MQMessageEncoderAdapter;
 import org.darkphoenixs.mq.exception.MQException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +34,7 @@ public abstract class KafkaMessageEncoder<K, V> extends MQMessageEncoderAdapter<
 
     @Override
     public byte[] encode(V message) throws MQException {
-
-        return encodeVal(message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**

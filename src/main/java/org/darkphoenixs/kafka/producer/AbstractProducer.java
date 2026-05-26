@@ -57,45 +57,33 @@ public abstract class AbstractProducer<K, V> implements MQProducer<V> {
      * @return the messageTemplate
      */
     public KafkaMessageTemplate<K, V> getMessageTemplate() {
-        return messageTemplate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param messageTemplate the messageTemplate to set
      */
     public void setMessageTemplate(KafkaMessageTemplate<K, V> messageTemplate) {
-        this.messageTemplate = messageTemplate;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the destination
      */
     public KafkaDestination getDestination() {
-        return destination;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param destination the destination to set
      */
     public void setDestination(KafkaDestination destination) {
-        this.destination = destination;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void send(V message) throws MQException {
-
-        try {
-            V obj = doSend(message);
-
-            messageTemplate.convertAndSend(destination, obj);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Send Success, ProducerKey : " + this.getProducerKey()
-                + " , Message : " + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -108,29 +96,12 @@ public abstract class AbstractProducer<K, V> implements MQProducer<V> {
      * @since 1.3.0
      */
     public void sendWithKey(K key, V message) throws MQException {
-
-        try {
-            V obj = doSend(message);
-
-            messageTemplate.convertAndSendWithKey(destination, key, obj);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Send Success, ProducerKey : " + this.getProducerKey()
-                + " , MessageKey : " + key + " , Message : " + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getProducerKey() throws MQException {
-
-        if (this.producerKey != null)
-
-            return this.producerKey;
-
-        return destination.getDestinationName();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -138,7 +109,7 @@ public abstract class AbstractProducer<K, V> implements MQProducer<V> {
      * @since 1.2.3
      */
     public void setProducerKey(String producerKey) {
-        this.producerKey = producerKey;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -150,5 +121,4 @@ public abstract class AbstractProducer<K, V> implements MQProducer<V> {
      * @throws MQException MQ异常
      */
     protected abstract V doSend(V message) throws MQException;
-
 }

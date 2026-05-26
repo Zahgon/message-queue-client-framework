@@ -33,14 +33,7 @@ public class ByteUtil {
      * @return 合并后的数组
      */
     public static byte[] merge(byte[] b1, byte[] b2) {
-
-        byte[] merge = new byte[b1.length + b2.length];
-
-        System.arraycopy(b1, 0, merge, 0, b1.length);
-
-        System.arraycopy(b2, 0, merge, b1.length, b2.length);
-
-        return merge;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -52,14 +45,6 @@ public class ByteUtil {
      * @return 截取后的数组
      */
     public static byte[] sub(byte[] bytes, int begin, int end) {
-
-        byte[] sub = new byte[end - begin];
-
-        for (int i = 0; i < sub.length; i++) {
-
-            sub[i] = bytes[begin + i];
-        }
-
-        return sub;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

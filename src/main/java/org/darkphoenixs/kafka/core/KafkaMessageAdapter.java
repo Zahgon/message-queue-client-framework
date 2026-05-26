@@ -23,7 +23,6 @@ import org.darkphoenixs.kafka.listener.KafkaMessageListener;
 import org.darkphoenixs.mq.exception.MQException;
 import org.darkphoenixs.mq.util.MQ_BATCH;
 import org.darkphoenixs.mq.util.MQ_MODEL;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,7 +69,7 @@ public class KafkaMessageAdapter<K, V> {
      * @return the decoder
      */
     public KafkaMessageDecoder<K, V> getDecoder() {
-        return decoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -79,7 +78,7 @@ public class KafkaMessageAdapter<K, V> {
      * @param decoder the decoder to set
      */
     public void setDecoder(KafkaMessageDecoder<K, V> decoder) {
-        this.decoder = decoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -88,7 +87,7 @@ public class KafkaMessageAdapter<K, V> {
      * @return the messageListener
      */
     public KafkaMessageListener<K, V> getMessageListener() {
-        return messageListener;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,7 +96,7 @@ public class KafkaMessageAdapter<K, V> {
      * @param messageListener the messageListener to set
      */
     public void setMessageListener(KafkaMessageListener<K, V> messageListener) {
-        this.messageListener = messageListener;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -116,9 +115,7 @@ public class KafkaMessageAdapter<K, V> {
      * @return the model
      */
     public String getModel() {
-        if (model != null)
-            return model.name();
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -127,7 +124,7 @@ public class KafkaMessageAdapter<K, V> {
      * @param model the model
      */
     public void setModel(String model) {
-        this.model = MQ_MODEL.valueOf(model);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -136,9 +133,7 @@ public class KafkaMessageAdapter<K, V> {
      * @return the batch
      */
     public String getBatch() {
-        if (batch != null)
-            return batch.name();
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -147,7 +142,7 @@ public class KafkaMessageAdapter<K, V> {
      * @param batch the batch
      */
     public void setBatch(String batch) {
-        this.batch = MQ_BATCH.valueOf(batch);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -168,16 +163,7 @@ public class KafkaMessageAdapter<K, V> {
      * @throws MQException the mq exception
      */
     public void messageAdapter(MessageAndMetadata<?, ?> messageAndMetadata) throws MQException {
-
-        byte[] keyBytes = (byte[]) messageAndMetadata.key();
-
-        byte[] valBytes = (byte[]) messageAndMetadata.message();
-
-        K k = decoder.decodeKey(keyBytes);
-
-        V v = decoder.decodeVal(valBytes);
-
-        messageListener.onMessage(k, v);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -189,16 +175,7 @@ public class KafkaMessageAdapter<K, V> {
      * @since 1.4.0
      */
     public void messageAdapter(ConsumerRecord<?, ?> consumerRecord) throws MQException {
-
-        byte[] keyBytes = (byte[]) consumerRecord.key();
-
-        byte[] valBytes = (byte[]) consumerRecord.value();
-
-        K k = decoder.decodeKey(keyBytes);
-
-        V v = decoder.decodeVal(valBytes);
-
-        messageListener.onMessage(k, v);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -210,16 +187,7 @@ public class KafkaMessageAdapter<K, V> {
      * @since 1.4.3
      */
     public void messageAdapter(ConsumerRecords<?, ?> consumerRecords) throws MQException {
-
-        Map<byte[], byte[]> map = new HashMap<byte[], byte[]>();
-
-        for (ConsumerRecord<?, ?> consumerRecord : consumerRecords)
-
-            map.put((byte[]) consumerRecord.key(), (byte[]) consumerRecord.value());
-
-        Map<K, V> kv = decoder.batchDecode(map);
-
-        messageListener.onMessage(kv);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -255,4 +223,3 @@ public class KafkaMessageAdapter<K, V> {
         // TODO: 2018/10/8
     }
 }
-

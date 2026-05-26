@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.mq.consumer;
 
 import org.darkphoenixs.mq.exception.MQException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +38,7 @@ public abstract class MQConsumerAdapter<T> implements MQConsumer<T> {
 
     @Override
     public String getConsumerKey() {
-        return consumerKey;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -49,22 +47,12 @@ public abstract class MQConsumerAdapter<T> implements MQConsumer<T> {
      * @param consumerKey the consumer key
      */
     public void setConsumerKey(String consumerKey) {
-        this.consumerKey = consumerKey;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void receive(T message) throws MQException {
-
-        try {
-            doReceive(message);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Receive Success, ConsumerKey : " + this.getConsumerKey()
-                + " , Message : " + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -75,18 +63,7 @@ public abstract class MQConsumerAdapter<T> implements MQConsumer<T> {
      * @throws MQException the mq exception
      */
     public void receive(String key, T message) throws MQException {
-
-        try {
-            doReceive(key, message);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Receive Success, ConsumerKey : " + this.getConsumerKey()
-                + " , Key : " + key
-                + " , Message : " + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -96,17 +73,7 @@ public abstract class MQConsumerAdapter<T> implements MQConsumer<T> {
      * @throws MQException the mq exception
      */
     public void receive(Map<String, T> messages) throws MQException {
-
-        try {
-            doReceive(messages);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Receive Success, ConsumerKey : " + this.getConsumerKey()
-                + " , Messages size: " + messages.size());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -117,7 +84,6 @@ public abstract class MQConsumerAdapter<T> implements MQConsumer<T> {
      */
     protected abstract void doReceive(T message) throws MQException;
 
-
     /**
      * Do receive.
      *
@@ -126,8 +92,7 @@ public abstract class MQConsumerAdapter<T> implements MQConsumer<T> {
      * @throws MQException the mq exception
      */
     protected void doReceive(String key, T message) throws MQException {
-
-        doReceive(message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -137,10 +102,7 @@ public abstract class MQConsumerAdapter<T> implements MQConsumer<T> {
      * @throws MQException the mq exception
      */
     protected void doReceive(List<T> messages) throws MQException {
-
-        for (T message : messages)
-
-            doReceive(message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -150,8 +112,6 @@ public abstract class MQConsumerAdapter<T> implements MQConsumer<T> {
      * @throws MQException the mq exception
      */
     protected void doReceive(Map<String, T> messages) throws MQException {
-
-        doReceive(new ArrayList<T>(messages.values()));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -15,7 +15,6 @@
  */
 package org.darkphoenixs.kafka.core;
 
-
 /**
  * <p>Title: ZookeeperHosts</p>
  * <p>Description: ZookeeperHosts</p>
@@ -27,10 +26,13 @@ package org.darkphoenixs.kafka.core;
 public class ZookeeperHosts {
 
     private String topic = null;
-    ;
+
     private String brokerZkStr = null;
+
     private String brokerZkPath = null;
+
     private String DEFAULT_ZK_ROOT = KafkaConstants.DEFAULT_ZK_ROOT;
+
     private int refreshFreqSecs = KafkaConstants.DEFAULT_REFRESH_FRE_SEC;
 
     public ZookeeperHosts(String brokerZkStr, String topic) {
@@ -46,34 +48,34 @@ public class ZookeeperHosts {
     }
 
     public String getBrokerZkStr() {
-        return brokerZkStr;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setBrokerZkStr(String brokerZkStr) {
-        this.brokerZkStr = brokerZkStr;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getBrokerZkPath() {
-        return brokerZkPath;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setBrokerZkPath(String brokerZkPath) {
-        this.brokerZkPath = brokerZkPath;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public int getRefreshFreqSecs() {
-        return refreshFreqSecs;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setRefreshFreqSecs(int refreshFreqSecs) {
-        this.refreshFreqSecs = refreshFreqSecs;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getTopic() {
-        return topic;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setTopic(String topic) {
-        this.topic = topic;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

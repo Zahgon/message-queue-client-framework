@@ -17,7 +17,6 @@ package org.darkphoenixs.kafka.listener;
 
 import org.darkphoenixs.kafka.consumer.AbstractConsumer;
 import org.darkphoenixs.mq.exception.MQException;
-
 import java.util.Map;
 
 /**
@@ -40,33 +39,23 @@ public class KafkaMessageConsumerListener<K, V> extends KafkaMessageListener<K, 
      * @return the consumer
      */
     public AbstractConsumer<K, V> getConsumer() {
-        return consumer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumer the consumer to set
      */
     public void setConsumer(AbstractConsumer<K, V> consumer) {
-        this.consumer = consumer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(K key, V val) throws MQException {
-
-        if (consumer != null)
-
-            consumer.receive(key, val);
-        else
-            throw new MQException("MQConsumer is null !");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(Map<K, V> messages) throws MQException {
-
-        if (consumer != null)
-
-            consumer.receive(messages);
-        else
-            throw new MQException("MQConsumer is null !");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

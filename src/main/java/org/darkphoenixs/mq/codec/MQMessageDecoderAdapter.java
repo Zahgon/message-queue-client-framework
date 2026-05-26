@@ -16,7 +16,6 @@
 package org.darkphoenixs.mq.codec;
 
 import org.darkphoenixs.mq.exception.MQException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,13 +30,6 @@ public abstract class MQMessageDecoderAdapter<T> implements MQMessageDecoder<T> 
 
     @Override
     public List<T> batchDecode(List<byte[]> bytes) throws MQException {
-
-        List<T> list = new ArrayList<T>();
-
-        for (byte[] b : bytes)
-
-            list.add(decode(b));
-
-        return list;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

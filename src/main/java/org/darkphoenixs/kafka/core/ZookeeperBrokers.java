@@ -22,7 +22,6 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.List;
 
 /**
@@ -35,27 +34,25 @@ import java.util.List;
  */
 public class ZookeeperBrokers {
 
-    public static final Logger logger = LoggerFactory
-            .getLogger(ZookeeperBrokers.class);
+    public static final Logger logger = LoggerFactory.getLogger(ZookeeperBrokers.class);
 
     private CuratorFramework _curator;
-    private String _zkPath;
-    private String _topic;
 
+    private String _zkPath;
+
+    private String _topic;
 
     public ZookeeperBrokers(ZookeeperHosts zkHosts) {
         _zkPath = zkHosts.getBrokerZkPath();
         _topic = zkHosts.getTopic();
-        _curator = CuratorFrameworkFactory.newClient(zkHosts.getBrokerZkStr(), new RetryNTimes(
-                Integer.MAX_VALUE, KafkaConstants.INTERVAL_IN_MS));
+        _curator = CuratorFrameworkFactory.newClient(zkHosts.getBrokerZkStr(), new RetryNTimes(Integer.MAX_VALUE, KafkaConstants.INTERVAL_IN_MS));
         _curator.start();
     }
 
     public ZookeeperBrokers(String zkStr, String zkPath, String topic) {
         _zkPath = zkPath;
         _topic = topic;
-        _curator = CuratorFrameworkFactory.newClient(zkStr, new RetryNTimes(
-                Integer.MAX_VALUE, KafkaConstants.INTERVAL_IN_MS));
+        _curator = CuratorFrameworkFactory.newClient(zkStr, new RetryNTimes(Integer.MAX_VALUE, KafkaConstants.INTERVAL_IN_MS));
         _curator.start();
     }
 
@@ -63,42 +60,14 @@ public class ZookeeperBrokers {
      * Get all partitions with their current leaders
      */
     public String getBrokerInfo() {
-        String brokerStr = "";
-        try {
-            int numPartitionsForTopic = getNumPartitions();
-            String brokerInfoPath = brokerPath();
-            for (int partition = 0; partition < numPartitionsForTopic; partition++) {
-                int leader = getLeaderFor(partition);
-                String path = brokerInfoPath + "/" + leader;
-                try {
-                    byte[] hostPortData = _curator.getData().forPath(path);
-                    brokerStr = brokerStr + getBrokerHost(hostPortData);
-                    if (partition != numPartitionsForTopic - 1)
-                        brokerStr += ",";
-                } catch (org.apache.zookeeper.KeeperException.NoNodeException e) {
-                    logger.error("Node {} does not exist ", path);
-                }
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        logger.info("Read partition info from zookeeper: " + brokerStr);
-        return brokerStr;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Get partitions number
      */
     public int getNumPartitions() {
-        try {
-            String topicBrokersPath = partitionPath();
-            List<String> children = _curator.getChildren().forPath(
-                    topicBrokersPath);
-            return children.size();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -110,16 +79,7 @@ public class ZookeeperBrokers {
      * @return leader partition number
      */
     public int getLeaderFor(long partition) {
-        try {
-            String topicBrokersPath = partitionPath();
-            byte[] hostPortData = _curator.getData().forPath(
-                    topicBrokersPath + "/" + partition + "/state");
-            JSONObject json = JSON.parseObject(new String(hostPortData, "UTF-8"));
-            Integer leader = json.getInteger("leader");
-            return leader;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,34 +90,27 @@ public class ZookeeperBrokers {
      * @return broker host
      */
     public String getBrokerHost(byte[] contents) {
-        try {
-            JSONObject json = JSON.parseObject(new String(contents, "UTF-8"));
-            String host = json.getString("host");
-            Integer port = json.getInteger("port");
-            return host + ":" + port;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Get partition path
      */
     public String partitionPath() {
-        return _zkPath + "/topics/" + _topic + "/partitions";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Get broker path
      */
     public String brokerPath() {
-        return _zkPath + "/ids";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Close curator
      */
     public void close() {
-        _curator.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

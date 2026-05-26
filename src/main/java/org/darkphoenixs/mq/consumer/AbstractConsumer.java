@@ -43,30 +43,19 @@ public abstract class AbstractConsumer<T> implements MQConsumer<T> {
 
     @Override
     public void receive(T message) throws MQException {
-
-        try {
-            doReceive(message);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
-        logger.debug("Receive Success, ConsumerKey : " + this.getConsumerKey()
-                + " , Message : " + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getConsumerKey() throws MQException {
-
-        return this.consumerKey;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumerKey the consumerKey to set
      */
     public void setConsumerKey(String consumerKey) {
-        this.consumerKey = consumerKey;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -77,5 +66,4 @@ public abstract class AbstractConsumer<T> implements MQConsumer<T> {
      * @throws MQException MQ异常
      */
     protected abstract void doReceive(T message) throws MQException;
-
 }

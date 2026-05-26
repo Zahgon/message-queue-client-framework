@@ -20,7 +20,6 @@ import org.darkphoenixs.kafka.codec.KafkaMessageEncoder;
 import org.darkphoenixs.kafka.pool.MessageReceiverPool;
 import org.darkphoenixs.kafka.pool.MessageSenderPool;
 import org.darkphoenixs.mq.exception.MQException;
-
 import java.util.List;
 import java.util.Map;
 
@@ -58,56 +57,56 @@ public class KafkaMessageTemplate<K, V> {
      * @return the messageSenderPool
      */
     public MessageSenderPool<byte[], byte[]> getMessageSenderPool() {
-        return messageSenderPool;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param messageSenderPool the messageSenderPool to set
      */
     public void setMessageSenderPool(MessageSenderPool<byte[], byte[]> messageSenderPool) {
-        this.messageSenderPool = messageSenderPool;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the messageReceiverPool
      */
     public MessageReceiverPool<byte[], byte[]> getMessageReceiverPool() {
-        return messageReceiverPool;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param messageReceiverPool the messageReceiverPool to set
      */
     public void setMessageReceiverPool(MessageReceiverPool<byte[], byte[]> messageReceiverPool) {
-        this.messageReceiverPool = messageReceiverPool;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the encoder
      */
     public KafkaMessageEncoder<K, V> getEncoder() {
-        return encoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param encoder the encoder to set
      */
     public void setEncoder(KafkaMessageEncoder<K, V> encoder) {
-        this.encoder = encoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the decoder
      */
     public KafkaMessageDecoder<K, V> getDecoder() {
-        return decoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param decoder the decoder to set
      */
     public void setDecoder(KafkaMessageDecoder<K, V> decoder) {
-        this.decoder = decoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -118,12 +117,7 @@ public class KafkaMessageTemplate<K, V> {
      * @param message     消息
      */
     public void send(KafkaDestination destination, byte[] message) throws MQException {
-
-        KafkaMessageSender<byte[], byte[]> sender = messageSenderPool.getSender();
-
-        sender.send(destination.getDestinationName(), message);
-
-        messageSenderPool.returnSender(sender);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -136,12 +130,7 @@ public class KafkaMessageTemplate<K, V> {
      * @since 1.3.0
      */
     public void sendWithKey(KafkaDestination destination, byte[] key, byte[] message) throws MQException {
-
-        KafkaMessageSender<byte[], byte[]> sender = messageSenderPool.getSender();
-
-        sender.sendWithKey(destination.getDestinationName(), key, message);
-
-        messageSenderPool.returnSender(sender);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -153,10 +142,7 @@ public class KafkaMessageTemplate<K, V> {
      * @throws MQException
      */
     public void convertAndSend(KafkaDestination destination, V message) throws MQException {
-
-        byte[] encoded = encoder.encode(message);
-
-        this.send(destination, encoded);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -170,12 +156,7 @@ public class KafkaMessageTemplate<K, V> {
      * @since 1.3.0
      */
     public void convertAndSendWithKey(KafkaDestination destination, K key, V message) throws MQException {
-
-        byte[] encodeKey = encoder.encodeKey(key);
-
-        byte[] encodeVal = encoder.encodeVal(message);
-
-        this.sendWithKey(destination, encodeKey, encodeVal);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -190,14 +171,7 @@ public class KafkaMessageTemplate<K, V> {
      * @throws MQException
      */
     public List<byte[]> receive(KafkaDestination destination, int partition, long beginOffset, long readOffset) throws MQException {
-
-        KafkaMessageReceiver<byte[], byte[]> receiver = messageReceiverPool.getReceiver();
-
-        List<byte[]> messages = receiver.receive(destination.getDestinationName(), partition, beginOffset, readOffset);
-
-        messageReceiverPool.returnReceiver(receiver);
-
-        return messages;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -213,14 +187,7 @@ public class KafkaMessageTemplate<K, V> {
      * @since 1.3.0
      */
     public Map<byte[], byte[]> receiveWithKey(KafkaDestination destination, int partition, long beginOffset, long readOffset) throws MQException {
-
-        KafkaMessageReceiver<byte[], byte[]> receiver = messageReceiverPool.getReceiver();
-
-        Map<byte[], byte[]> messages = receiver.receiveWithKey(destination.getDestinationName(), partition, beginOffset, readOffset);
-
-        messageReceiverPool.returnReceiver(receiver);
-
-        return messages;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -235,10 +202,7 @@ public class KafkaMessageTemplate<K, V> {
      * @throws MQException
      */
     public List<V> receiveAndConvert(KafkaDestination destination, int partition, long beginOffset, long readOffset) throws MQException {
-
-        List<byte[]> decoded = this.receive(destination, partition, beginOffset, readOffset);
-
-        return decoder.batchDecode(decoded);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -254,10 +218,6 @@ public class KafkaMessageTemplate<K, V> {
      * @since 1.3.0
      */
     public Map<K, V> receiveWithKeyAndConvert(KafkaDestination destination, int partition, long beginOffset, long readOffset) throws MQException {
-
-        Map<byte[], byte[]> decoded = this.receiveWithKey(destination, partition, beginOffset, readOffset);
-
-        return decoder.batchDecode(decoded);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

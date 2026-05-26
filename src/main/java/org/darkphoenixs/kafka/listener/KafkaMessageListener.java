@@ -17,7 +17,6 @@ package org.darkphoenixs.kafka.listener;
 
 import org.darkphoenixs.mq.exception.MQException;
 import org.darkphoenixs.mq.listener.MQMessageListener;
-
 import java.util.Map;
 
 /**
@@ -42,15 +41,13 @@ public abstract class KafkaMessageListener<K, V> implements MQMessageListener<V>
      * @throws MQException the mq exception
      */
     public void onMessage(final K key, final V val) throws MQException {
-
-        onMessage(val);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(V message) throws MQException {
-        // For compatible without Key.
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 
     /**
      * <p>onMessage</p>
@@ -61,6 +58,6 @@ public abstract class KafkaMessageListener<K, V> implements MQMessageListener<V>
      * @since 1.4.3
      */
     public void onMessage(Map<K, V> messages) throws MQException {
-        // For batch consumer messages.
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

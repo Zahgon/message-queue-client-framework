@@ -20,7 +20,6 @@ import org.darkphoenixs.mq.factory.MQProducerFactory;
 import org.darkphoenixs.mq.producer.MQProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -39,10 +38,12 @@ public final class MQMessageProducerFactory implements MQProducerFactory {
      * instance
      */
     private static final AtomicReference<MQMessageProducerFactory> instance = new AtomicReference<MQMessageProducerFactory>();
+
     /**
      * logger
      */
     protected Logger logger = LoggerFactory.getLogger(MQMessageProducerFactory.class);
+
     /**
      * producers
      */
@@ -63,69 +64,34 @@ public final class MQMessageProducerFactory implements MQProducerFactory {
      * get singleton instance method
      */
     public synchronized static MQProducerFactory getInstance() {
-
-        if (instance.get() == null)
-            instance.compareAndSet(null, new MQMessageProducerFactory());
-        return instance.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param producers the producers to set
      */
     public void setProducers(MQProducer<?>[] producers) {
-        this.producers = producers;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public <T> void addProducer(MQProducer<T> producer) throws MQException {
-
-        producerCache.put(producer.getProducerKey(), producer);
-
-        logger.debug("Add MQProducer : " + producer.getProducerKey());
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public <T> MQProducer<T> getProducer(String producerKey) throws MQException {
-
-        if (producerCache.containsKey(producerKey)) {
-
-            logger.debug("Get MQProducer : " + producerKey);
-
-            return (MQProducer<T>) producerCache.get(producerKey);
-
-        } else {
-
-            logger.warn("Unknown ProducerKey : " + producerKey);
-
-            return null;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void init() throws MQException {
-
-        if (producers != null)
-
-            for (int i = 0; i < producers.length; i++)
-
-                producerCache.put(producers[i].getProducerKey(), producers[i]);
-
-        logger.debug("Initialized!");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void destroy() throws MQException {
-
-        if (producers != null)
-            producers = null;
-
-        if (instance.get() != null)
-            instance.set(null);
-
-        producerCache.clear();
-
-        logger.debug("Destroyed!");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

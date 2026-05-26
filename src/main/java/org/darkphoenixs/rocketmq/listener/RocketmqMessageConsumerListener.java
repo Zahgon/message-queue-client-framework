@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.rocketmq.listener;
 
 import org.apache.rocketmq.client.consumer.listener.*;
@@ -25,7 +24,6 @@ import org.darkphoenixs.mq.util.MQ_MODEL;
 import org.darkphoenixs.rocketmq.consumer.AbstractConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +59,7 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
      * @return the message decoder
      */
     public MQMessageDecoder<T> getMessageDecoder() {
-        return messageDecoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -70,7 +68,7 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
      * @param messageDecoder the message decoder
      */
     public void setMessageDecoder(MQMessageDecoder<T> messageDecoder) {
-        this.messageDecoder = messageDecoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -79,7 +77,7 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
      * @return the consumer
      */
     public AbstractConsumer<T> getConsumer() {
-        return consumer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -88,7 +86,7 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
      * @param consumer the consumer
      */
     public void setConsumer(AbstractConsumer<T> consumer) {
-        this.consumer = consumer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,7 +95,7 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
      * @return the batch
      */
     public String getBatch() {
-        return batch.name();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -106,7 +104,7 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
      * @param batch the batch
      */
     public void setBatch(String batch) {
-        this.batch = MQ_BATCH.valueOf(batch);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -115,7 +113,7 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
      * @return the model
      */
     public String getModel() {
-        return model.name();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -124,77 +122,40 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
      * @param model the model
      */
     public void setModel(String model) {
-        this.model = MQ_MODEL.valueOf(model);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Deprecated
     public void onMessage(T message) throws MQException {
-
         if (consumer != null)
-
             consumer.receive(message);
         else
             throw new MQException("Consumer is null !");
-
         logger.debug("Consume Success, Message : " + message);
     }
 
     @Deprecated
     public void onMessage(List<T> messages) throws MQException {
-
         if (consumer != null)
-
             consumer.receive(messages);
         else
             throw new MQException("Consumer is null !");
-
         logger.debug("Consume Success, Message size: " + messages.size());
     }
 
     @Override
     public void onMessage(String key, T message) throws MQException {
-
-        if (consumer != null)
-
-            consumer.receive(key, message);
-        else
-            throw new MQException("Consumer is null !");
-
-        logger.debug("Consume Success, Message : " + message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(Map<String, T> messages) throws MQException {
-
-        if (consumer != null)
-
-            consumer.receive(messages);
-        else
-            throw new MQException("Consumer is null !");
-
-        logger.debug("Consume Success, Message size: " + messages.size());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public MessageListener getMessageListener() {
-
-        MessageListener messageListener = null;
-
-        switch (model) {
-
-            case MODEL_1:
-
-                messageListener = messageListenerOrderly;
-
-                break;
-
-            case MODEL_2:
-
-                messageListener = messageListenerConcurrently;
-
-                break;
-        }
-        return messageListener;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -204,31 +165,17 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
      * @throws MQException
      */
     private void consume(List<MessageExt> messages) throws MQException {
-
-        switch (batch) {
-
+        switch(batch) {
             case BATCH:
-
                 Map<String, T> identityHashMap = new IdentityHashMap<String, T>();
-
-                for (MessageExt message : messages)
-
-                    identityHashMap.put(message.getKeys(), messageDecoder.decode(message.getBody()));
-
+                for (MessageExt message : messages) identityHashMap.put(message.getKeys(), messageDecoder.decode(message.getBody()));
                 onMessage(identityHashMap);
-
                 break;
-
             case NON_BATCH:
-
-                for (MessageExt message : messages)
-
-                    onMessage(message.getKeys(), messageDecoder.decode(message.getBody()));
-
+                for (MessageExt message : messages) onMessage(message.getKeys(), messageDecoder.decode(message.getBody()));
                 break;
         }
     }
-
 
     /**
      * The Message listener concurrently.
@@ -236,20 +183,7 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
     protected MessageListenerConcurrently messageListenerConcurrently = new MessageListenerConcurrently() {
 
         public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> messages, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-
-            try {
-                consume(messages);
-
-                logger.debug("Consume Success: " + messages);
-
-            } catch (Exception e) {
-
-                logger.error("Consume failed !", e);
-
-                return ConsumeConcurrentlyStatus.RECONSUME_LATER;
-            }
-
-            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     };
 
@@ -260,21 +194,7 @@ public class RocketmqMessageConsumerListener<T> extends RocketmqMessageListener<
 
         @Override
         public ConsumeOrderlyStatus consumeMessage(List<MessageExt> messages, ConsumeOrderlyContext consumeOrderlyContext) {
-
-            try {
-                consume(messages);
-
-                logger.debug("Consume Success: " + messages);
-
-            } catch (Exception e) {
-
-                logger.error("Consume failed !", e);
-
-                return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
-            }
-
-            return ConsumeOrderlyStatus.SUCCESS;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     };
-
 }

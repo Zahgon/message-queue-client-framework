@@ -18,7 +18,6 @@ package org.darkphoenixs.kafka.core;
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
-
 import java.util.Properties;
 
 /**
@@ -45,9 +44,7 @@ public class KafkaMessageSenderImpl<K, V> implements KafkaMessageSender<K, V> {
      * @param props param props
      */
     public KafkaMessageSenderImpl(Properties props) {
-
         ProducerConfig config = new ProducerConfig(props);
-
         this.producer = new Producer<K, V>(config);
     }
 
@@ -57,7 +54,7 @@ public class KafkaMessageSenderImpl<K, V> implements KafkaMessageSender<K, V> {
      * @return the producer
      */
     public Producer<K, V> getProducer() {
-        return producer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -66,29 +63,21 @@ public class KafkaMessageSenderImpl<K, V> implements KafkaMessageSender<K, V> {
      * @param producer the producer to set
      */
     public void setProducer(Producer<K, V> producer) {
-        this.producer = producer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void send(String topic, V value) {
-
-        KeyedMessage<K, V> data = new KeyedMessage<K, V>(topic, value);
-
-        this.producer.send(data);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void sendWithKey(String topic, K key, V value) {
-
-        KeyedMessage<K, V> data = new KeyedMessage<K, V>(topic, key, value);
-
-        this.producer.send(data);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void shutDown() {
-
-        this.producer.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -29,8 +29,7 @@ import org.darkphoenixs.mq.util.RefleTool;
  * @see KafkaMessageListener
  * @since 2016年7月21日
  */
-public class KafkaMessageFactoryConsumerListener<K, V> extends
-        KafkaMessageListener<K, V> {
+public class KafkaMessageFactoryConsumerListener<K, V> extends KafkaMessageListener<K, V> {
 
     /**
      * consumerKeyField
@@ -46,53 +45,32 @@ public class KafkaMessageFactoryConsumerListener<K, V> extends
      * @return the consumerKeyField
      */
     public String getConsumerKeyField() {
-        return consumerKeyField;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumerKeyField the consumerKeyField to set
      */
     public void setConsumerKeyField(String consumerKeyField) {
-        this.consumerKeyField = consumerKeyField;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the consumerFactory
      */
     public MQConsumerFactory getConsumerFactory() {
-        return consumerFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumerFactory the consumerFactory to set
      */
     public void setConsumerFactory(MQConsumerFactory consumerFactory) {
-        this.consumerFactory = consumerFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(K key, V val) throws MQException {
-
-        if (consumerFactory == null)
-            throw new MQException("MQConsumerFactory is null !");
-
-        if (consumerKeyField == null)
-            throw new MQException("ConsumerKeyField is null !");
-
-        if (val == null)
-            throw new MQException("Message is null !");
-
-        String consumerKey = RefleTool.getMethodValue(val, "get" + consumerKeyField.substring(0, 1).toUpperCase() + consumerKeyField.substring(1));
-
-        if (consumerKey == null)
-            throw new MQException("MQConsumer Key is null !");
-
-        @SuppressWarnings("unchecked")
-        AbstractConsumer<K, V> consumer = (AbstractConsumer<K, V>) consumerFactory.getConsumer(consumerKey);
-
-        if (consumer == null)
-            throw new MQException("MQConsumer is null !");
-
-        consumer.receive(key, val);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -38,25 +38,7 @@ public class RefleTool {
      * @return 实例化对象
      */
     public static <T> T newInstance(Class<T> objClass, Object... params) {
-
-        T t = null;
-
-        Class<?>[] paramTypes = new Class<?>[params.length];
-
-        for (int i = 0; i < params.length; i++)
-
-            paramTypes[i] = params[i].getClass();
-
-        try {
-            Constructor<T> constructor = objClass.getConstructor(paramTypes);
-
-            t = constructor.newInstance(params);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return t;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -68,24 +50,7 @@ public class RefleTool {
      * @return 属性值
      */
     public static <T> T getFieldValue(Object obj, String fieldName) {
-
-        Class<?> clasz = obj.getClass();
-
-        for (; clasz != Object.class; clasz = clasz.getSuperclass()) {
-
-            try {
-                Field field = clasz.getDeclaredField(fieldName);
-
-                field.setAccessible(true);
-
-                return (T) field.get(obj);
-
-            } catch (Exception e) {
-
-            }
-        }
-
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,20 +62,6 @@ public class RefleTool {
      * @return 方法返回值
      */
     public static <T> T getMethodValue(Object obj, String methodName) {
-
-        Class<?> clasz = obj.getClass();
-
-        try {
-            Method method = clasz.getMethod(methodName);
-
-            method.setAccessible(true);
-
-            return (T) method.invoke(obj);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.kafka.pool;
 
 import kafka.message.MessageAndMetadata;
@@ -22,7 +21,6 @@ import org.darkphoenixs.kafka.core.KafkaMessageAdapter;
 import org.darkphoenixs.mq.exception.MQException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -74,21 +72,13 @@ public class KafkaMessageReceiverRetry<T> {
      * @param messageAdapter the message adapter
      */
     public KafkaMessageReceiverRetry(String topic, int retryCount, KafkaMessageAdapter<?, ?> messageAdapter) {
-
         this.retryCount = retryCount;
-
         this.errorMessageQueue = new LinkedBlockingQueue<T>(errorQueueSize);
-
         this.errorRetryThreads = new ArrayList<RetryThread>(errorPoolSize);
-
         this.errorMessagePool = Executors.newFixedThreadPool(errorPoolSize, new KafkaPoolThreadFactory(KafkaMessageReceiverRetry.RetryThread.tagger + "-" + topic));
-
         this.errorMessageCount = new ConcurrentHashMap<String, AtomicInteger>();
-
         RetryThread retryThread = new RetryThread(messageAdapter);
-
         this.errorRetryThreads.add(retryThread);
-
         this.errorMessagePool.submit(retryThread);
     }
 
@@ -98,29 +88,7 @@ public class KafkaMessageReceiverRetry<T> {
      * @param record the record
      */
     public void receiveMessageRetry(T record) {
-
-        try {
-            if (record instanceof MessageAndMetadata) {
-
-                MessageAndMetadata messageAndMetadata = (MessageAndMetadata) record;
-
-                if (0 < errorMessageCount(messageAndMetadata.topic(), messageAndMetadata.partition(), messageAndMetadata.offset())) {
-
-                    errorMessageQueue.offer(record, errorTimeout, TimeUnit.MILLISECONDS);
-                }
-            } else if (record instanceof ConsumerRecord) {
-
-                ConsumerRecord consumerRecord = (ConsumerRecord) record;
-
-                if (0 < errorMessageCount(consumerRecord.topic(), consumerRecord.partition(), consumerRecord.offset())) {
-
-                    errorMessageQueue.offer(record, errorTimeout, TimeUnit.MILLISECONDS);
-                }
-            }
-        } catch (InterruptedException e) {
-
-            logger.error("BlockingQueue offer failed.", e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -129,19 +97,7 @@ public class KafkaMessageReceiverRetry<T> {
      * @param record the record
      */
     public void receiveMessageClean(T record) {
-
-        if (record instanceof MessageAndMetadata) {
-
-            MessageAndMetadata messageAndMetadata = (MessageAndMetadata) record;
-
-            errorMessageCount.remove(errorMessageKey(messageAndMetadata.topic(), messageAndMetadata.partition(), messageAndMetadata.offset()));
-
-        } else if (record instanceof ConsumerRecord) {
-
-            ConsumerRecord consumerRecord = (ConsumerRecord) record;
-
-            errorMessageCount.remove(errorMessageKey(consumerRecord.topic(), consumerRecord.partition(), consumerRecord.offset()));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -151,50 +107,17 @@ public class KafkaMessageReceiverRetry<T> {
      * @return the int
      */
     public int receiveMessageCount(T record) {
-
-        if (record instanceof MessageAndMetadata) {
-
-            MessageAndMetadata messageAndMetadata = (MessageAndMetadata) record;
-
-            return errorMessageCount.get(errorMessageKey(messageAndMetadata.topic(), messageAndMetadata.partition(), messageAndMetadata.offset())).get();
-
-        } else if (record instanceof ConsumerRecord) {
-
-            ConsumerRecord consumerRecord = (ConsumerRecord) record;
-
-            return errorMessageCount.get(errorMessageKey(consumerRecord.topic(), consumerRecord.partition(), consumerRecord.offset())).get();
-        }
-
-        return 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Destroy.
      */
     public void destroy() {
-
-        if (errorMessageQueue != null)
-
-            while (!errorMessageQueue.isEmpty()) ;
-
-        for (RetryThread thread : errorRetryThreads)
-
-            thread.shutdown();
-
-        errorRetryThreads.clear();
-
-        if (errorMessagePool != null) {
-
-            errorMessagePool.shutdown();
-
-            while (!errorMessagePool.isTerminated()) ;
-        }
-
-        logger.info("Message Retry pool closed.");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private String errorMessageKey(final String _topic, final int _partition, final long _offset) {
-
         return _topic + "_" + _partition + "_" + _offset;
     }
 
@@ -207,34 +130,7 @@ public class KafkaMessageReceiverRetry<T> {
      * @return the int
      */
     protected int errorMessageCount(String topic, int partition, long offset) {
-
-        if (retryCount == 0)
-
-            return 0;
-
-        String errorKey = errorMessageKey(topic, partition, offset);
-
-        AtomicInteger count = errorMessageCount.get(errorKey);
-
-        if (null == count) {
-
-            count = errorMessageCount.putIfAbsent(errorKey, new AtomicInteger(1));
-        }
-
-        if (null != count) {
-
-            if (retryCount > count.get()) {
-
-                return count.incrementAndGet();
-
-            } else {
-                errorMessageCount.remove(errorKey);
-
-                return 0;
-            }
-        }
-
-        return 1;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -257,49 +153,13 @@ public class KafkaMessageReceiverRetry<T> {
          * @param adapter the adapter
          */
         public RetryThread(KafkaMessageAdapter<?, ?> adapter) {
-
             this.adapter = adapter;
         }
 
         @Override
         public void run() {
-
-            logger.info(Thread.currentThread().getName() + " start.");
-
-            while (!closed.get()) {
-
-                T record = null;
-
-                try {
-                    record = errorMessageQueue.poll(errorTimeout, TimeUnit.MILLISECONDS);
-
-                } catch (InterruptedException e) {
-
-                    logger.error("BlockingQueue poll failed.", e);
-                }
-
-                if (record != null) {
-                    // retry error count
-                    int retries = receiveMessageCount(record);
-                    try {
-                        logger.warn("Retry receive message. Number of retries: " + retries);
-                        // retry message handle
-                        receiveMessageAdapter(record);
-                        // clean retry count
-                        receiveMessageClean(record);
-
-                    } catch (MQException e) {
-                        // message retry again
-                        receiveMessageRetry(record);
-                        // exception info
-                        receiveMessageError(record, retries, e);
-                    }
-                }
-            }
-
-            logger.info(Thread.currentThread().getName() + " end.");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
 
         /**
          * Receive message adapter.
@@ -308,19 +168,7 @@ public class KafkaMessageReceiverRetry<T> {
          * @throws MQException the mq exception
          */
         public void receiveMessageAdapter(T record) throws MQException {
-
-            if (record instanceof ConsumerRecord) {
-
-                ConsumerRecord<?, ?> consumerRecord = (ConsumerRecord) record;
-
-                adapter.messageAdapter(consumerRecord);
-
-            } else if (record instanceof MessageAndMetadata) {
-
-                MessageAndMetadata<?, ?> messageAndMetadata = (MessageAndMetadata) record;
-
-                adapter.messageAdapter(messageAndMetadata);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -331,35 +179,14 @@ public class KafkaMessageReceiverRetry<T> {
          * @param e       the e
          */
         public void receiveMessageError(T record, int retries, MQException e) {
-
-            if (record instanceof ConsumerRecord) {
-
-                ConsumerRecord<?, ?> consumerRecord = (ConsumerRecord) record;
-
-                logger.error("Receive message failed."
-                        + " retries: " + retries
-                        + " topic: " + consumerRecord.topic()
-                        + " offset: " + consumerRecord.offset()
-                        + " partition: " + consumerRecord.partition(), e);
-
-            } else if (record instanceof MessageAndMetadata) {
-
-                MessageAndMetadata<?, ?> messageAndMetadata = (MessageAndMetadata) record;
-
-                logger.error("Receive message failed."
-                        + " retries: " + retries
-                        + " topic: " + messageAndMetadata.topic()
-                        + " offset: " + messageAndMetadata.offset()
-                        + " partition: " + messageAndMetadata.partition(), e);
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
          * Shutdown hook which can be called from a separate thread.
          */
         public void shutdown() {
-
-            closed.set(true);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 }

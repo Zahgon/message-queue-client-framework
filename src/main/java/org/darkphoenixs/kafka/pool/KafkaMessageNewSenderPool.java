@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.kafka.pool;
 
 import org.darkphoenixs.kafka.core.KafkaMessageNewSender;
@@ -22,7 +21,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
-
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -78,7 +76,7 @@ public class KafkaMessageNewSenderPool<K, V> implements MessageSenderPool<K, V> 
      * @deprecated
      */
     public int getPoolSize() {
-        return poolSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -88,7 +86,7 @@ public class KafkaMessageNewSenderPool<K, V> implements MessageSenderPool<K, V> 
      * @deprecated
      */
     public void setPoolSize(int poolSize) {
-        this.poolSize = poolSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,7 +95,7 @@ public class KafkaMessageNewSenderPool<K, V> implements MessageSenderPool<K, V> 
      * @return the props
      */
     public Properties getProps() {
-        return props;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -106,7 +104,7 @@ public class KafkaMessageNewSenderPool<K, V> implements MessageSenderPool<K, V> 
      * @param props the props
      */
     public void setProps(Properties props) {
-        this.props = props;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -115,7 +113,7 @@ public class KafkaMessageNewSenderPool<K, V> implements MessageSenderPool<K, V> 
      * @return the config
      */
     public Resource getConfig() {
-        return config;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -124,53 +122,31 @@ public class KafkaMessageNewSenderPool<K, V> implements MessageSenderPool<K, V> 
      * @param config the config
      */
     public void setConfig(Resource config) {
-        this.config = config;
-        try {
-            PropertiesLoaderUtils.fillProperties(props, this.config);
-        } catch (IOException e) {
-            logger.error("Fill properties failed.", e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void init() {
-
-        sender = new KafkaMessageNewSender<K, V>(props);
-
-        running.set(true);
-
-        logger.info("Message Sender Pool initialized.");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void destroy() {
-
-        sender.shutDown();
-
-        running.set(false);
-
-        logger.info("Message Sender pool closed.");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized boolean isRunning() {
-
-        return running.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public KafkaMessageSender<K, V> getSender() {
-
-        if (sender == null)
-
-            sender = new KafkaMessageNewSender<K, V>(props);
-
-        return sender;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void returnSender(KafkaMessageSender<K, V> sender) {
-
-        // nothing to do.
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

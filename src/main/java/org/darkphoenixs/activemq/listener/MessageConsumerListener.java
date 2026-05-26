@@ -20,7 +20,6 @@ import org.darkphoenixs.mq.exception.MQException;
 import org.darkphoenixs.mq.listener.MQMessageListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -53,53 +52,32 @@ public class MessageConsumerListener<T> implements MQMessageListener<T> {
      * @return the consumer
      */
     public MQConsumer<T> getConsumer() {
-        return consumer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumer the consumer to set
      */
     public void setConsumer(MQConsumer<T> consumer) {
-        this.consumer = consumer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the threadPool
      */
     public ExecutorService getThreadPool() {
-        return threadPool;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param threadPool the threadPool to set
      */
     public void setThreadPool(ExecutorService threadPool) {
-        this.threadPool = threadPool;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(final T message) throws MQException {
-
-        if (consumer != null)
-
-            if (threadPool != null)
-
-                threadPool.execute(new Runnable() {
-
-                    @Override
-                    public void run() {
-
-                        try {
-                            consumer.receive(message);
-                        } catch (MQException e) {
-                            logger.error("Receive message failed.", e);
-                        }
-                    }
-                });
-            else
-                consumer.receive(message);
-        else
-            throw new MQException("MQConsumer is null !");
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.rocketmq.producer;
 
 import org.apache.rocketmq.client.producer.*;
@@ -24,7 +23,6 @@ import org.darkphoenixs.mq.exception.MQException;
 import org.darkphoenixs.mq.producer.MQProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +59,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @return the transaction mq producer
      */
     public TransactionMQProducer getTransactionMQProducer() {
-        return transactionMQProducer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -70,7 +68,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @param transactionMQProducer the transaction mq producer
      */
     public void setTransactionMQProducer(TransactionMQProducer transactionMQProducer) {
-        this.transactionMQProducer = transactionMQProducer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -79,7 +77,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @return the default mq producer
      */
     public DefaultMQProducer getDefaultMQProducer() {
-        return defaultMQProducer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -88,7 +86,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @param defaultMQProducer the default mq producer
      */
     public void setDefaultMQProducer(DefaultMQProducer defaultMQProducer) {
-        this.defaultMQProducer = defaultMQProducer;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -97,7 +95,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @return the message encoder
      */
     public MQMessageEncoder<T> getMessageEncoder() {
-        return messageEncoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -106,7 +104,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @param messageEncoder the message encoder
      */
     public void setMessageEncoder(MQMessageEncoder<T> messageEncoder) {
-        this.messageEncoder = messageEncoder;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -115,7 +113,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @return the topic
      */
     public String getTopic() {
-        return topic;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -124,17 +122,12 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @param topic the topic
      */
     public void setTopic(String topic) {
-        this.topic = topic;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String getProducerKey() {
-
-        if (producerKey != null)
-
-            return producerKey;
-
-        return topic;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -143,30 +136,12 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @param producerKey the producer key
      */
     public void setProducerKey(String producerKey) {
-        this.producerKey = producerKey;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void send(T message) throws MQException {
-
-        if (defaultMQProducer == null)
-
-            throw new MQException("DefaultMQProducer is null !");
-
-        try {
-            T obj = doSend(message);
-
-            Message msg = new Message(topic, messageEncoder.encode(obj));
-
-            SendResult sendResult = defaultMQProducer.send(msg);
-
-            logger.debug("Send Success: " + sendResult + " " + message);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -176,29 +151,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @throws MQException the mq exception
      */
     public void batchSend(List<T> messages) throws MQException {
-
-        if (defaultMQProducer == null)
-
-            throw new MQException("DefaultMQProducer is null !");
-
-        try {
-            List<T> objs = doSend(messages);
-
-            List<Message> batchMessage = new ArrayList<Message>();
-
-            for (T t : objs)
-
-                batchMessage.add(new Message(topic, messageEncoder.encode(t)));
-
-            SendResult sendResult = defaultMQProducer.send(batchMessage);
-
-            logger.debug("Send Success: " + sendResult + " " + batchMessage);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -208,33 +161,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @throws MQException the mq exception
      */
     public void sendAsync(T message) throws MQException {
-
-        if (defaultMQProducer == null)
-
-            throw new MQException("DefaultMQProducer is null !");
-
-        try {
-            T obj = doSend(message);
-
-            final Message msg = new Message(topic, messageEncoder.encode(obj));
-
-            defaultMQProducer.send(msg, new SendCallback() {
-
-                @Override
-                public void onSuccess(SendResult sendResult) {
-                    logger.debug("Send Success: " + sendResult + " " + msg);
-                }
-
-                @Override
-                public void onException(Throwable e) {
-                    logger.error("Async send failed !", e);
-                }
-            });
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -244,24 +171,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @throws MQException the mq exception
      */
     public void sendOneWay(T message) throws MQException {
-
-        if (defaultMQProducer == null)
-
-            throw new MQException("DefaultMQProducer is null !");
-
-        try {
-            T obj = doSend(message);
-
-            Message msg = new Message(topic, messageEncoder.encode(obj));
-
-            defaultMQProducer.sendOneway(msg);
-
-            logger.debug("Send Success: " + msg);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -272,24 +182,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @throws MQException the mq exception
      */
     public void sendWithKey(String key, T message) throws MQException {
-
-        if (defaultMQProducer == null)
-
-            throw new MQException("DefaultMQProducer is null !");
-
-        try {
-            T obj = doSend(message);
-
-            Message msg = new Message(topic, "", key, messageEncoder.encode(obj));
-
-            SendResult sendResult = defaultMQProducer.send(msg, messageQueueSelector, key);
-
-            logger.debug("Send Success: " + sendResult + " " + msg);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -301,24 +194,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @throws MQException the mq exception
      */
     public void sendWithTag(String key, String tag, T message) throws MQException {
-
-        if (defaultMQProducer == null)
-
-            throw new MQException("DefaultMQProducer is null !");
-
-        try {
-            T obj = doSend(message);
-
-            Message msg = new Message(topic, tag, key, messageEncoder.encode(obj));
-
-            SendResult sendResult = defaultMQProducer.send(msg, messageQueueSelector, key);
-
-            logger.debug("Send Success: " + sendResult + " " + msg);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -330,24 +206,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @throws MQException the mq exception
      */
     public void sendWithTx(T message, LocalTransactionExecuter executer, Object param) throws MQException {
-
-        if (transactionMQProducer == null)
-
-            throw new MQException("TransactionMQProducer is null !");
-
-        try {
-            T obj = doSend(message);
-
-            Message msg = new Message(topic, messageEncoder.encode(obj));
-
-            TransactionSendResult sendResult = transactionMQProducer.sendMessageInTransaction(msg, executer, param);
-
-            logger.debug("Send Success: " + sendResult + " " + msg);
-
-        } catch (Exception e) {
-
-            throw new MQException(e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -358,8 +217,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @throws MQException the mq exception
      */
     protected T doSend(T message) throws MQException {
-
-        return message;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -370,8 +228,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
      * @throws MQException the mq exception
      */
     protected List<T> doSend(List<T> messages) throws MQException {
-
-        return messages;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -381,14 +238,7 @@ public abstract class AbstractProducer<T> implements MQProducer<T> {
 
         @Override
         public MessageQueue select(List<MessageQueue> mqs, Message msg, Object arg) {
-
-            int select = Math.abs(arg.hashCode());
-
-            if (select < 0)
-
-                select = 0;
-
-            return mqs.get(select % mqs.size());
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     };
 }

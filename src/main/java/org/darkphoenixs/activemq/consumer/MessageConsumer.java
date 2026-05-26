@@ -30,8 +30,6 @@ public class MessageConsumer<T> extends AbstractConsumer<T> {
 
     @Override
     protected void doReceive(T message) throws MQException {
-
-        System.out.println(message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

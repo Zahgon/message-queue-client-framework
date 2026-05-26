@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.kafka.pool;
 
 import org.apache.kafka.clients.consumer.*;
@@ -27,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
@@ -75,22 +73,27 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * The blocking queue.
      */
     protected BlockingQueue<ConsumerRecords<K, V>> blockingQueue;
+
     /**
      * The Receiver pool.
      */
     protected ExecutorService receivPool;
+
     /**
      * The Handler pool.
      */
     protected ExecutorService handlePool;
+
     /**
      * The ReceiverThreads.
      */
     protected List<ReceiverThread> receivThreads = new ArrayList<ReceiverThread>();
+
     /**
      * The HandleThreads.
      */
     protected List<HandlerThread> handleThreads = new ArrayList<HandlerThread>();
+
     /**
      * The Running.
      */
@@ -102,50 +105,59 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * Default MODEL_1.
      */
     private MQ_MODEL model = MQ_MODEL.MODEL_1;
+
     /**
      * The Batch.
      * <p>
      * Default NON_BATCH.
      */
     private MQ_BATCH batch = MQ_BATCH.NON_BATCH;
+
     /**
      * The Commit.
      * <p>
      * Default AUTO_COMMIT.
      */
     private COMMIT commit = COMMIT.AUTO_COMMIT;
+
     /**
      * The Props.
      */
     private Properties props = new Properties();
+
     /**
      * The Config.
      */
     private Resource config;
+
     /**
      * The Pool size.
      * <p>
      * The size is the consumer thread pool size.
      */
     private int poolSize;
+
     /**
      * How many multiple is the consumer thread pool size, MODEL_2 to take effect.
      * <p>
      * When MODEL is MODEL_2, the handle thread pool size is (poolSize * handleMultiple + 1).
      */
     private int handleMultiple = 2;
+
     /**
      * The message receive retry Count.
      * <p>
      * When MQ_BATCH is NON_BATCH to take effect.
      */
     private int retryCount = 3;
+
     /**
      * The Blocking queue size.
      * <p>
      * When MODEL is MODEL_2 to take effect.
      */
     private int queueSize = 100000;
+
     /**
      * The Thread sleep time(ms).
      * <p>
@@ -200,7 +212,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the props
      */
     public Properties getProps() {
-        return props;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -209,7 +221,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param props the props
      */
     public void setProps(Properties props) {
-        this.props = props;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -218,7 +230,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the handle multiple
      */
     public int getHandleMultiple() {
-        return handleMultiple;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -227,7 +239,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param handleMultiple the handle multiple
      */
     public void setHandleMultiple(int handleMultiple) {
-        this.handleMultiple = handleMultiple;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -236,7 +248,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the retry count
      */
     public int getRetryCount() {
-        return retryCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -245,7 +257,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param retryCount the retry count
      */
     public void setRetryCount(int retryCount) {
-        this.retryCount = retryCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -254,7 +266,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the pool size
      */
     public int getPoolSize() {
-        return poolSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -263,7 +275,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param poolSize the pool size
      */
     public void setPoolSize(int poolSize) {
-        this.poolSize = poolSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -272,7 +284,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the queue size
      */
     public int getQueueSize() {
-        return queueSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -281,7 +293,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param queueSize the queue size
      */
     public void setQueueSize(int queueSize) {
-        this.queueSize = queueSize;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -290,7 +302,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the thread sleep
      */
     public long getThreadSleep() {
-        return threadSleep;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -299,7 +311,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param threadSleep the thread sleep
      */
     public void setThreadSleep(long threadSleep) {
-        this.threadSleep = threadSleep;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -308,7 +320,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the poll timeout
      */
     public long getPollTimeout() {
-        return pollTimeout;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -317,7 +329,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param pollTimeout the poll timeout
      */
     public void setPollTimeout(long pollTimeout) {
-        this.pollTimeout = pollTimeout;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -326,7 +338,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the monitor interval time
      */
     public long getMonitorIntervalTime() {
-        return monitorIntervalTime;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -335,7 +347,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param monitorIntervalTime the monitor interval time
      */
     public void setMonitorIntervalTime(long monitorIntervalTime) {
-        this.monitorIntervalTime = monitorIntervalTime;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -344,7 +356,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the monitor percentage
      */
     public int getMonitorPercentage() {
-        return monitorPercentage;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -353,7 +365,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param monitorPercentage the monitor percentage
      */
     public void setMonitorPercentage(int monitorPercentage) {
-        this.monitorPercentage = monitorPercentage;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -362,7 +374,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the config
      */
     public Resource getConfig() {
-        return config;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -371,12 +383,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param config the config
      */
     public void setConfig(Resource config) {
-        this.config = config;
-        try {
-            PropertiesLoaderUtils.fillProperties(props, this.config);
-        } catch (IOException e) {
-            logger.error("Fill properties failed.", e);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -385,8 +392,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the model
      */
     public String getModel() {
-
-        return model.name();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -397,7 +403,6 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      */
     @Deprecated
     public void setModel(String model) {
-
         this.model = MQ_MODEL.valueOf(model);
     }
 
@@ -407,8 +412,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the batch
      */
     public String getBatch() {
-
-        return batch.name();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -419,7 +423,6 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      */
     @Deprecated
     public void setBatch(String batch) {
-
         this.batch = MQ_BATCH.valueOf(batch);
     }
 
@@ -429,8 +432,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the commit
      */
     public String getCommit() {
-
-        return commit.name();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -439,11 +441,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param commit the commit
      */
     public void setCommit(String commit) {
-
-        this.commit = COMMIT.valueOf(commit);
-
-        if (!this.commit.equals(COMMIT.AUTO_COMMIT))
-            props.setProperty(KafkaConstants.ENABLE_AUTO_COMMIT, "false");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -452,7 +450,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the message adapter
      */
     public KafkaMessageAdapter<?, ?> getMessageAdapter() {
-        return messageAdapter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -461,13 +459,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param messageAdapter the message adapter
      */
     public void setMessageAdapter(KafkaMessageAdapter<?, ?> messageAdapter) {
-        this.messageAdapter = messageAdapter;
-        if (messageAdapter.getModel() != null)
-            this.setModel(messageAdapter.getModel());
-        if (messageAdapter.getBatch() != null)
-            this.setBatch(messageAdapter.getBatch());
-        if (messageAdapter.getDestination() != null)
-            this.setDestination(messageAdapter.getDestination());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -476,7 +468,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the client id
      */
     public String getClientId() {
-        return this.props.getProperty(KafkaConstants.CLIENT_ID, "client_new_consumer");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -485,7 +477,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the group id
      */
     public String getGroupId() {
-        return this.props.getProperty(KafkaConstants.GROUP_ID, "group_new_consumer");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -494,7 +486,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @return the destination
      */
     public KafkaDestination getDestination() {
-        return destination;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -503,156 +495,32 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param destination the destination
      */
     public void setDestination(KafkaDestination destination) {
-        this.destination = destination;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public KafkaMessageReceiver<K, V> getReceiver() {
-
-        Properties properties = (Properties) props.clone();
-
-        properties.setProperty(KafkaConstants.GROUP_ID, "group_new_consumer");
-
-        properties.setProperty(KafkaConstants.CLIENT_ID, "client_new_consumer");
-
-        return new KafkaMessageNewReceiver<K, V>(properties);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void returnReceiver(KafkaMessageReceiver<K, V> receiver) {
-
-        if (receiver != null)
-
-            receiver.shutDown();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void init() {
-
-        String topic = destination.getDestinationName();
-
-        KafkaMessageReceiver<K, V> receiver = getReceiver();
-
-        // partition size
-        int partSize = receiver.getPartitionCount(topic);
-
-        if (poolSize == 0 || poolSize > partSize)
-            // pool size default partition size
-            setPoolSize(partSize);
-
-        returnReceiver(receiver);
-
-        switch (model) {
-
-            case MODEL_1: // MODEL_1
-
-                receivPool = Executors.newFixedThreadPool(poolSize, new KafkaPoolThreadFactory(ReceiverThread.tagger + "-" + topic));
-
-                break;
-
-            case MODEL_2: // MODEL_2
-
-                int handSize = poolSize * handleMultiple + 1;
-
-                blockingQueue = new LinkedBlockingQueue<ConsumerRecords<K, V>>(queueSize);
-
-                receivPool = Executors.newFixedThreadPool(poolSize, new KafkaPoolThreadFactory(ReceiverThread.tagger + "-" + topic));
-
-                handlePool = Executors.newFixedThreadPool(handSize, new KafkaPoolThreadFactory(HandlerThread.tagger + "-" + topic));
-
-                for (int i = 0; i < handSize; i++) {
-
-                    HandlerThread handlerThread = new HandlerThread(messageAdapter);
-
-                    handleThreads.add(handlerThread);
-
-                    handlePool.submit(handlerThread);
-                }
-
-                logger.info("Message Handler Pool initialized. PoolSize : " + handSize);
-
-                break;
-        }
-
-        if (retryCount > 0 && batch.equals(MQ_BATCH.NON_BATCH))
-            // retry count > 0 and batch is NON_BATCH
-            receiverRetry = new KafkaMessageReceiverRetry<ConsumerRecord<K, V>>(topic, retryCount, messageAdapter);
-
-        if (monitorPercentage > 0 && model.equals(MQ_MODEL.MODEL_2))
-            // monitor percentage > 0 and model is MODEL_2
-            receiverMonitor = new KafkaMessageReceiverMonitor<ConsumerRecords<K, V>>(topic, monitorIntervalTime, monitorPercentage, blockingQueue);
-
-        for (int i = 0; i < poolSize; i++) {
-
-            Properties properties = (Properties) props.clone();
-
-            properties.setProperty(KafkaConstants.CLIENT_ID, getClientId() + "-" + topic + "-" + i);
-
-            ReceiverThread receiverThread = new ReceiverThread(properties, topic, messageAdapter);
-
-            receivThreads.add(receiverThread);
-
-            receivPool.submit(receiverThread);
-        }
-
-        logger.info("Message Receiver Pool initialized. PoolSize : " + poolSize);
-
-        running.set(true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void destroy() {
-
-        for (ReceiverThread thread : receivThreads)
-
-            thread.shutdown();
-
-        receivThreads.clear();
-
-        if (receivPool != null) {
-
-            receivPool.shutdown();
-
-            while (!receivPool.isTerminated()) ;
-
-            logger.info("Message Receiver pool closed.");
-        }
-
-        if (blockingQueue != null)
-
-            while (!blockingQueue.isEmpty()) ;
-
-        for (HandlerThread thread : handleThreads)
-
-            thread.shutdown();
-
-        handleThreads.clear();
-
-        if (handlePool != null) {
-
-            handlePool.shutdown();
-
-            while (!handlePool.isTerminated()) ;
-
-            logger.info("Message Handler pool closed.");
-        }
-
-        if (receiverRetry != null) {
-
-            receiverRetry.destroy();
-        }
-
-        if (receiverMonitor != null)
-
-            receiverMonitor.destroy();
-
-        running.set(false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized boolean isRunning() {
-
-        return running.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -681,116 +549,21 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
          * @param adapter the adapter
          */
         public ReceiverThread(Properties props, String topic, KafkaMessageAdapter<?, ?> adapter) {
-
             this.topic = topic;
-
             this.adapter = adapter;
-
             consumer = new KafkaConsumer<K, V>(props);
         }
 
         @Override
         public void run() {
-
-            logger.info(Thread.currentThread().getName() + " start.");
-
-            try {
-                consumer.subscribe(Arrays.asList(topic));
-
-                while (!closed.get()) {
-
-                    ConsumerRecords<K, V> records = consumer.poll(pollTimeout);
-
-                    // Handle new records
-                    switch (model) {
-
-                        case MODEL_1: // 模式1
-
-                            switch (batch) {
-
-                                case BATCH: // 批量
-
-                                    try {
-                                        if (!records.isEmpty())
-
-                                            adapter.messageAdapter(records);
-
-                                    } catch (MQException e) {
-
-                                        logger.error("Receive message failed. failSize:" + records.count(), e);
-
-                                    } finally {
-
-                                        batchCommit(consumer, commit); // 批量提交
-                                    }
-
-                                    break;
-
-                                case NON_BATCH: // 非批量
-
-                                    for (ConsumerRecord<K, V> record : records)
-
-                                        try {
-                                            adapter.messageAdapter(record);
-
-                                        } catch (MQException e) {
-
-                                            messageReceiveRetry(record); // 消息重试
-
-                                            logger.error("Receive message failed."
-                                                    + " topic: " + record.topic()
-                                                    + " offset: " + record.offset()
-                                                    + " partition: " + record.partition(), e);
-                                        } finally {
-
-                                            commit(consumer, record, commit); // 逐个提交
-                                        }
-
-                                    break;
-                            }
-
-                            break;
-
-                        case MODEL_2:
-
-                            try {
-                                if (!records.isEmpty())
-
-                                    blockingQueue.put(records); // 阻塞方法 如果blockingQueue已满
-
-                            } catch (InterruptedException e) {
-
-                                logger.error("BlockingQueue put failed.", e);
-                            }
-
-                            batchCommit(consumer, commit); // 批量提交
-
-                            break;
-                    }
-
-                    waitAmoment(threadSleep);
-                }
-
-            } catch (WakeupException e) {
-                // Ignore exception if closing
-                if (!closed.get()) throw e;
-
-            } finally {
-
-                consumer.close();
-            }
-
-            logger.info(Thread.currentThread().getName() + " end.");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
          * Shutdown hook which can be called from a separate thread.
          */
         public void shutdown() {
-
-            closed.set(true);
-
-            consumer.wakeup();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -814,76 +587,19 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
          * @param adapter the adapter
          */
         public HandlerThread(KafkaMessageAdapter<?, ?> adapter) {
-
             this.adapter = adapter;
         }
 
         @Override
         public void run() {
-
-            logger.info(Thread.currentThread().getName() + " start.");
-
-            while (!closed.get()) {
-
-                ConsumerRecords<K, V> records = null;
-
-                try {
-                    records = blockingQueue.poll(pollTimeout, TimeUnit.MILLISECONDS);
-
-                } catch (InterruptedException e) {
-
-                    logger.error("BlockingQueue take failed.", e);
-                }
-
-                if (records != null) {
-
-                    switch (batch) {
-
-                        case BATCH:
-
-                            try {
-                                adapter.messageAdapter(records);
-
-                            } catch (MQException e) {
-
-                                logger.error("Receive message failed. failSize: " + records.count(), e);
-                            }
-
-                            break;
-
-                        case NON_BATCH:
-
-                            for (ConsumerRecord<K, V> record : records)
-
-                                try {
-                                    adapter.messageAdapter(record);
-
-                                } catch (MQException e) {
-
-                                    messageReceiveRetry(record);
-
-                                    logger.error("Receive message failed."
-                                            + " topic: " + record.topic()
-                                            + " offset: " + record.offset()
-                                            + " partition: " + record.partition(), e);
-                                }
-
-                            break;
-                    }
-                }
-
-                waitAmoment(threadSleep);
-            }
-
-            logger.info(Thread.currentThread().getName() + " end.");
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
          * Shutdown hook which can be called from a separate thread.
          */
         public void shutdown() {
-
-            closed.set(true);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -895,19 +611,12 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param commit   commit
      */
     private void commit(KafkaConsumer<K, V> consumer, ConsumerRecord<K, V> record, COMMIT commit) {
-
-        switch (commit) {
-
+        switch(commit) {
             case SYNC_COMMIT:
-                consumer.commitSync(Collections.singletonMap(
-                        new TopicPartition(record.topic(), record.partition()),
-                        new OffsetAndMetadata(record.offset() + 1)));
+                consumer.commitSync(Collections.singletonMap(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1)));
                 break;
             case ASYNC_COMMIT:
-                consumer.commitAsync(Collections.singletonMap(
-                        new TopicPartition(record.topic(), record.partition()),
-                        new OffsetAndMetadata(record.offset() + 1)),
-                        offsetCommitCallback);
+                consumer.commitAsync(Collections.singletonMap(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1)), offsetCommitCallback);
                 break;
             default:
                 break;
@@ -921,13 +630,13 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param commit   commit
      */
     private void batchCommit(KafkaConsumer<K, V> consumer, COMMIT commit) {
-
-        switch (commit) {
-
-            case SYNC_COMMIT: // 同步提交
+        switch(commit) {
+            case // 同步提交
+            SYNC_COMMIT:
                 consumer.commitSync();
                 break;
-            case ASYNC_COMMIT: // 异步提交
+            case // 异步提交
+            ASYNC_COMMIT:
                 consumer.commitAsync();
                 break;
             default:
@@ -941,9 +650,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param consumerRecord
      */
     private void messageReceiveRetry(ConsumerRecord<K, V> consumerRecord) {
-
         if (receiverRetry != null)
-
             receiverRetry.receiveMessageRetry(consumerRecord);
     }
 
@@ -953,7 +660,6 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
      * @param ms millisecond
      */
     private void waitAmoment(long ms) {
-
         try {
             TimeUnit.MILLISECONDS.sleep(ms);
         } catch (InterruptedException e) {
@@ -968,8 +674,7 @@ public class KafkaMessageNewReceiverPool<K, V> implements MessageReceiverPool<K,
 
         @Override
         public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
-            if (exception != null)
-                logger.error("Offset commit with offsets {} failed", offsets, exception);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     };
 }

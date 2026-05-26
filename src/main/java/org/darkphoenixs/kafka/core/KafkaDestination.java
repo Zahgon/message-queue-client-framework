@@ -51,14 +51,13 @@ public class KafkaDestination {
      * @return the destinationName
      */
     public String getDestinationName() {
-        return destinationName;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param destinationName the destinationName to set
      */
     public void setDestinationName(String destinationName) {
-        this.destinationName = destinationName;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

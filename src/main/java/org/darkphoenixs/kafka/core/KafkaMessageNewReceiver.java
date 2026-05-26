@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.darkphoenixs.kafka.core;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
-
 import java.util.*;
 
 /**
@@ -47,146 +45,36 @@ public class KafkaMessageNewReceiver<K, V> implements KafkaMessageReceiver<K, V>
      * @param props the props
      */
     public KafkaMessageNewReceiver(Properties props) {
-
         kafkaConsumer = new KafkaConsumer<K, V>(props);
     }
 
     @Override
     public synchronized List<V> receive(String topic, int partition, long beginOffset, long readOffset) {
-
-        if (readOffset <= 0) {
-
-            throw new IllegalArgumentException("read offset must be greater than 0");
-        }
-
-        long earliestOffset = getEarliestOffset(topic, partition);
-
-        if (beginOffset < earliestOffset)
-
-            beginOffset = earliestOffset;
-
-        long latestOffset = getLatestOffset(topic, partition);
-
-        if (beginOffset + readOffset > latestOffset)
-
-            readOffset = latestOffset - beginOffset;
-
-        List<V> list = new ArrayList<V>();
-
-        kafkaConsumer.assign(Arrays.asList(new TopicPartition(topic, partition)));
-
-        kafkaConsumer.seek(new TopicPartition(topic, partition), beginOffset);
-
-        boolean flag = true;
-
-        while (flag) {
-
-            ConsumerRecords<K, V> records = kafkaConsumer.poll(KafkaConstants.MIN_POLL_TIMEOUT);
-
-            for (ConsumerRecord<K, V> record : records) {
-
-                long currentOffset = record.offset();
-
-                if ((currentOffset == latestOffset - 1) || (currentOffset > beginOffset + readOffset - 1)) {
-
-                    flag = false;
-
-                    break;
-                }
-
-                list.add(record.value());
-            }
-        }
-
-        return list;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized Map<K, V> receiveWithKey(String topic, int partition, long beginOffset, long readOffset) {
-
-        if (readOffset <= 0) {
-
-            throw new IllegalArgumentException("read offset must be greater than 0");
-        }
-
-        long earliestOffset = getEarliestOffset(topic, partition);
-
-        if (beginOffset < earliestOffset)
-
-            beginOffset = earliestOffset;
-
-        long latestOffset = getLatestOffset(topic, partition);
-
-        if (beginOffset + readOffset > latestOffset)
-
-            readOffset = latestOffset - beginOffset;
-
-        Map<K, V> map = new HashMap<K, V>();
-
-        kafkaConsumer.assign(Arrays.asList(new TopicPartition(topic, partition)));
-
-        kafkaConsumer.seek(new TopicPartition(topic, partition), beginOffset);
-
-        boolean flag = true;
-
-        while (flag) {
-
-            ConsumerRecords<K, V> records = kafkaConsumer.poll(KafkaConstants.MIN_POLL_TIMEOUT);
-
-            for (ConsumerRecord<K, V> record : records) {
-
-                long currentOffset = record.offset();
-
-                if ((currentOffset == latestOffset - 1) || (currentOffset > beginOffset + readOffset - 1)) {
-
-                    flag = false;
-
-                    break;
-                }
-
-                map.put(record.key(), record.value());
-            }
-        }
-
-        return map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized long getLatestOffset(String topic, int partition) {
-
-        kafkaConsumer.assign(Arrays.asList(new TopicPartition(topic, partition)));
-
-        kafkaConsumer.seekToEnd(Arrays.asList(new TopicPartition(topic, partition)));
-
-        long latestOffset = kafkaConsumer.position(new TopicPartition(topic, partition));
-
-        return latestOffset;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized long getEarliestOffset(String topic, int partition) {
-
-        kafkaConsumer.assign(Arrays.asList(new TopicPartition(topic, partition)));
-
-        kafkaConsumer.seekToBeginning(Arrays.asList(new TopicPartition(topic, partition)));
-
-        long earliestOffset = kafkaConsumer.position(new TopicPartition(topic, partition));
-
-        return earliestOffset;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int getPartitionCount(String topic) {
-
-        return kafkaConsumer.partitionsFor(topic).size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public synchronized void shutDown() {
-
-        if (kafkaConsumer != null) {
-
-            kafkaConsumer.close();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

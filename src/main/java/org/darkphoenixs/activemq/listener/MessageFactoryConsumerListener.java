@@ -22,7 +22,6 @@ import org.darkphoenixs.mq.listener.MQMessageListener;
 import org.darkphoenixs.mq.util.RefleTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -60,82 +59,46 @@ public class MessageFactoryConsumerListener<T> implements MQMessageListener<T> {
      * @return the consumerKeyField
      */
     public String getConsumerKeyField() {
-        return consumerKeyField;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumerKeyField the consumerKeyField to set
      */
     public void setConsumerKeyField(String consumerKeyField) {
-        this.consumerKeyField = consumerKeyField;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the consumerFactory
      */
     public MQConsumerFactory getConsumerFactory() {
-        return consumerFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumerFactory the consumerFactory to set
      */
     public void setConsumerFactory(MQConsumerFactory consumerFactory) {
-        this.consumerFactory = consumerFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the threadPool
      */
     public ExecutorService getThreadPool() {
-        return threadPool;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param threadPool the threadPool to set
      */
     public void setThreadPool(ExecutorService threadPool) {
-        this.threadPool = threadPool;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(final T message) throws MQException {
-
-        if (consumerFactory == null)
-            throw new MQException("MQConsumerFactory is null !");
-
-        if (consumerKeyField == null)
-            throw new MQException("ConsumerKeyField is null !");
-
-        if (message == null)
-            throw new MQException("Message is null !");
-
-        final String consumerKey = RefleTool.getMethodValue(message, "get" + consumerKeyField.substring(0, 1).toUpperCase() + consumerKeyField.substring(1));
-
-        if (consumerKey == null)
-            throw new MQException("MQConsumer Key is null !");
-
-        final MQConsumer<T> consumer = consumerFactory.getConsumer(consumerKey);
-
-        if (consumer == null)
-            throw new MQException("MQConsumer is null !");
-
-        if (threadPool == null)
-
-            consumer.receive(message);
-
-        else
-            threadPool.execute(new Runnable() {
-
-                @Override
-                public void run() {
-
-                    try {
-                        consumer.receive(message);
-                    } catch (MQException e) {
-                        logger.error("Receive message failed.", e);
-                    }
-                }
-            });
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

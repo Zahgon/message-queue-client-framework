@@ -20,7 +20,6 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.PartitionInfo;
-
 import java.util.List;
 import java.util.Properties;
 
@@ -47,7 +46,6 @@ public class KafkaMessageNewSender<K, V> implements KafkaMessageSender<K, V> {
      * @param properties the properties
      */
     public KafkaMessageNewSender(Properties properties) {
-
         kafkaProducer = new KafkaProducer<K, V>(properties);
     }
 
@@ -58,28 +56,22 @@ public class KafkaMessageNewSender<K, V> implements KafkaMessageSender<K, V> {
      * @return the partitions
      */
     public List<PartitionInfo> getPartitions(String topic) {
-
-        return kafkaProducer.partitionsFor(topic);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void send(String topic, V value) {
-
-        kafkaProducer.send(new ProducerRecord<K, V>(topic, value), sendCallback);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void sendWithKey(String topic, K key, V value) {
-
-        kafkaProducer.send(new ProducerRecord<K, V>(topic, key, value), sendCallback);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void shutDown() {
-
-        kafkaProducer.flush();
-
-        kafkaProducer.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -89,9 +81,7 @@ public class KafkaMessageNewSender<K, V> implements KafkaMessageSender<K, V> {
 
         @Override
         public void onCompletion(RecordMetadata metadata, Exception exception) {
-
-            if (exception != null)
-                logger.error("Send message failed.", exception);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     };
 }

@@ -53,7 +53,6 @@ public class KafkaPoolThreadFactory implements ThreadFactory {
      * 默认构造方法
      */
     public KafkaPoolThreadFactory() {
-
     }
 
     /**
@@ -102,59 +101,48 @@ public class KafkaPoolThreadFactory implements ThreadFactory {
 
     @Override
     public Thread newThread(Runnable r) {
-
-        Thread thread = new Thread(r);
-
-        if (priority >= 1 && priority <= 10)
-
-            thread.setPriority(priority);
-
-        thread.setDaemon(daemon);
-
-        thread.setName(prefix + "-" + i.getAndIncrement());
-
-        return thread;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the prefix
      */
     public String getPrefix() {
-        return prefix;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param prefix the prefix to set
      */
     public void setPrefix(String prefix) {
-        this.prefix = prefix;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the priority
      */
     public int getPriority() {
-        return priority;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param priority the priority to set
      */
     public void setPriority(int priority) {
-        this.priority = priority;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the daemon
      */
     public boolean isDaemon() {
-        return daemon;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param daemon the daemon to set
      */
     public void setDaemon(boolean daemon) {
-        this.daemon = daemon;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -46,52 +46,32 @@ public class MessageFactoryConsumerListener<K, V> extends KafkaMessageListener<K
      * @return the consumerKeyField
      */
     public String getConsumerKeyField() {
-        return consumerKeyField;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumerKeyField the consumerKeyField to set
      */
     public void setConsumerKeyField(String consumerKeyField) {
-        this.consumerKeyField = consumerKeyField;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the consumerFactory
      */
     public MQConsumerFactory getConsumerFactory() {
-        return consumerFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @param consumerFactory the consumerFactory to set
      */
     public void setConsumerFactory(MQConsumerFactory consumerFactory) {
-        this.consumerFactory = consumerFactory;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void onMessage(V message) throws MQException {
-
-        if (consumerFactory == null)
-            throw new MQException("MQConsumerFactory is null !");
-
-        if (consumerKeyField == null)
-            throw new MQException("ConsumerKeyField is null !");
-
-        if (message == null)
-            throw new MQException("Message is null !");
-
-        String consumerKey = RefleTool.getMethodValue(message, "get" + consumerKeyField.substring(0, 1).toUpperCase() + consumerKeyField.substring(1));
-
-        if (consumerKey == null)
-            throw new MQException("MQConsumer Key is null !");
-
-        MQConsumer<V> consumer = consumerFactory.getConsumer(consumerKey);
-
-        if (consumer == null)
-            throw new MQException("MQConsumer is null !");
-
-        consumer.receive(message);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }
